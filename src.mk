@@ -6,7 +6,7 @@
 #    By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:27:43 by mreynaud          #+#    #+#              #
-#    Updated: 2025/01/08 13:46:08 by mreynaud         ###   ########.fr        #
+#    Updated: 2025/01/08 15:06:26 by mreynaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS =	sources/cub3d.c					\
 		sources/parsing/parse_args.c	\
 		sources/parsing/parse_file.c	\
 		sources/parsing/parse_map.c		\
+		sources/parsing/get_textures.c	\
 		sources/render/actions.c		\
 		sources/render/destroyer.c		\
 		sources/render/displayer.c		\

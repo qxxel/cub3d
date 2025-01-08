@@ -6,11 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/01/08 14:13:53 by mreynaud         ###   ########.fr       */
-=======
-/*   Updated: 2025/01/08 14:18:55 by agerbaud         ###   ########.fr       */
->>>>>>> 5e01a958c50b114d8135458bb667a5d1c1418535
+/*   Updated: 2025/01/08 15:01:05 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +119,6 @@ bool	get_color(char **cub, char *part, t_color *color)
 	color->b = ft_atoi(rgb[2]);
 	ft_free_table(rgb); // free(): invalid pointer??
 	if (check_color(color, part))
-<<<<<<< HEAD
-		return (1);
-	return (0);
-=======
 		return (true);
 	return (false);
->>>>>>> 5e01a958c50b114d8135458bb667a5d1c1418535
 }
