@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/07 14:31:49 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:07:03 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,10 +133,11 @@ typedef struct	s_game
 }	t_game;
 
 //	Parsing
-int		get_color(char **cub, char *part, t_color *color);
-int		get_image(char **cub, char *direction, t_image *path);
+bool	get_color(char **cub, char *part, t_color *color);
+bool	get_image(char **cub, char *direction, t_image *path);
 char	**get_map(char **cub);
-int		parse_args(int argc, char **argv, t_game *game);
+bool	get_textures(char **cub, t_texture *texture);
+bool	parse_args(int argc, char **argv, t_game *game);
 int		parse_file(char **cub);
 int 	parse_map(char **map, t_game *game);
 
@@ -156,7 +157,7 @@ int		motionnotify(int x, int y, t_game *param);
 //	Utils
 void	clear_image(t_data *data);
 int		count_lines(char *file);
-int		err(char *str);
+bool	err(char *str);
 void	*ft_bzero_int(int *s, size_t n);
 char	**put_in_table(char	*file);
 void	put_pixel(t_data *data, int color, int x, int y);

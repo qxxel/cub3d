@@ -6,17 +6,27 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:07:29 by agerbaud          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/01/08 13:57:59 by mreynaud         ###   ########.fr       */
+=======
+/*   Updated: 2025/01/08 14:11:15 by agerbaud         ###   ########.fr       */
+>>>>>>> 5e01a958c50b114d8135458bb667a5d1c1418535
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int err(char *str)
+bool	err(char *str)
 {
-    int i;
+	int	i;
 
+<<<<<<< HEAD
     i = ft_strlen(str);
     write(2, str, i);
     return (1);
+=======
+	i = ft_strlen(str);
+	write(2, str, i);
+	return (true);
+>>>>>>> 5e01a958c50b114d8135458bb667a5d1c1418535
 }

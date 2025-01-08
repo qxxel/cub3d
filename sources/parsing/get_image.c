@@ -6,13 +6,17 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 00:45:30 by agerbaud          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/01/08 13:56:40 by mreynaud         ###   ########.fr       */
+=======
+/*   Updated: 2025/01/08 14:19:19 by agerbaud         ###   ########.fr       */
+>>>>>>> 5e01a958c50b114d8135458bb667a5d1c1418535
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	parse_image(char *path)
+static bool	parse_image(char *path)
 {
 	int	i;
 
@@ -21,7 +25,7 @@ static int	parse_image(char *path)
 		return (err("cub3d: textures must be .xpm\n"));
 	if (ft_isdir(path, O_RDONLY, 0))
 		return (err("cub3d: textures cannot be folders\n"));
-	return (0);
+	return (false);
 }
 
 static char	*extract_path(char *line)
@@ -37,7 +41,7 @@ static char	*extract_path(char *line)
 	return (path);
 }
 
-int	get_image(char **cub, char *direction, t_image *image)
+bool	get_image(char **cub, char *direction, t_image *image)
 {
 	int	i;
 	int	j;
@@ -60,7 +64,8 @@ int	get_image(char **cub, char *direction, t_image *image)
 		}
 		i++;
 	}
-	ft_printf("cub3d: there is no %s\
-		texture in the file put as argument\n", direction); // have to dprintf (fd ==> 2)
-	return (1);
+	err("cub3d: there is no ");
+	err(direction);
+	err(" texture in the file put as argument\n"); // dprintf
+	return (true);
 }

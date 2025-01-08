@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:25:34 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/11/12 16:08:40 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:09:29 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_bzero(void *s, size_t n);
 int		ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
-void    ft_free_table(char **table);
+void	ft_free_table(char **table);
 char	*ft_itoa(int n);
 int		ft_tolower(int c);
 int		ft_toupper(int c);

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdir.c                                         :+:      :+:    :+:   */
+/*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 11:45:21 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 14:09:04 by agerbaud         ###   ########.fr       */
+/*   Created: 2025/01/08 13:44:14 by agerbaud          #+#    #+#             */
+/*   Updated: 2025/01/08 14:11:44 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../../cub3d.h"
 
-int	ft_isdir(char *path, int flags, int perms)
+bool	get_textures(char **cub, t_texture *texture)
 {
-	int		fd;
-	char	c[1];
-
-	fd = open(path, flags, perms);
-	if (fd != -1 && read(fd, c, 1) < 0)
-	{
-		close (fd);
-		return (1);
-	}
-	close (fd);
-	return (0);
+	if (get_image(cub, "NO ", &texture->north) \
+		|| get_image(cub, "SO ", &texture->south) \
+		|| get_image(cub, "WE ", &texture->west) \
+		|| get_image(cub, "EA ", &texture->east) \
+		|| get_color(cub, "F ", &texture->floor) \
+		|| get_color(cub, "C ", &texture->ceiling))
+		return (true);
+	return (false);
 }
