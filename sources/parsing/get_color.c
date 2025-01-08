@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 15:01:05 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:45:18 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static bool	parse_rgb(char **rgb, char *part)
 		j = 0;
 		if (rgb[i][j] && rgb[i][j] == '\0')
 		{
-			ft_printf("cub3d: the rgb code of %s is empty\n", part); // a mettre en dprintf (fd ==> 2)
+			ft_dprintf(2, "cub3d: the rgb code of %s is empty\n", part);
 			return (true);
 		}
 		while (rgb[i][j] == ' ')
@@ -41,8 +41,8 @@ static bool	parse_rgb(char **rgb, char *part)
 					if (rgb[i][j] == '\0')
 						return (false);
 				}
-				ft_printf("cub3d: the rgb code of %s\
-					is not only made up of numbers\n", part); // a mettre en dprintf (fd ==> 2)
+				ft_dprintf(2, "cub3d: the rgb code of %s\
+					is not only made up of numbers\n", part);
 				return (true);
 			}
 			j++;
@@ -51,7 +51,7 @@ static bool	parse_rgb(char **rgb, char *part)
 	}
 	if (i != 3)
 	{
-		ft_printf("cub3d: the rgb code of %s is empty\n", part); // a mettre en dprintf (fd ==> 2)
+		ft_dprintf(2, "cub3d: the rgb code of %s is empty\n", part);
 		return (true);
 	}
 	return (false);
@@ -61,17 +61,20 @@ static bool	check_color(t_color *color, char *part)
 {
 	if (color->r < 0 || 255 < color->r)
 	{
-		ft_printf("cub3d: the rgb code of %s is not up to standard\n", part); // a mettre en dprintf (fd ==> 2)
+		ft_dprintf(2, "cub3d: the rgb code of %s is not up to standard\n", \
+			part);
 		return (true);
 	}
 	if (color->g < 0 || 255 < color->g)
 	{
-		ft_printf("cub3d: the rgb code of %s is not up to standard\n", part); // a mettre en dprintf (fd ==> 2)
+		ft_dprintf(2, "cub3d: the rgb code of %s is not up to standard\n", \
+			part);
 		return (true);
 	}
 	if (color->b < 0 || 255 < color->b)
 	{
-		ft_printf("cub3d: the rgb code of %s is not up to standard\n", part); // a mettre en dprintf (fd ==> 2)
+		ft_dprintf(2, "cub3d: the rgb code of %s is not up to standard\n", \
+			part);
 		return (true);
 	}
 	return (false);
@@ -99,9 +102,8 @@ static char	*find_color(char **cub, char *part)
 		}
 		i++;
 	}
-	err("cub3d: there is no ");
-	err(part);
-	err(" texture in the file put as argument\n"); // dprintf
+	ft_dprintf(2, "cub3d: there is no %s \
+		texture in the file put as argument\n", part);
 	return (NULL);
 }
 

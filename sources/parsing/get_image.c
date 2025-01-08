@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 00:45:30 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 14:59:52 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:46:47 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ bool	get_image(char **cub, char *direction, t_image *image)
 		}
 		i++;
 	}
-	err("cub3d: there is no ");
-	err(direction);
-	err(" texture in the file put as argument\n"); // dprintf
+	ft_dprintf(2, "cub3d: there is no %s \
+		texture in the file put as argument\n", direction);
 	return (true);
 }

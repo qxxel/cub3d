@@ -6,7 +6,7 @@
 #    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 12:34:17 by agerbaud          #+#    #+#              #
-#    Updated: 2024/11/08 01:11:23 by agerbaud         ###   ########.fr        #
+#    Updated: 2025/01/08 16:42:40 by agerbaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRCS =	checker/ft_isalpha.c				\
 		others/ft_split.c					\
 		others/ft_itoa.c					\
 		others/ft_tablen.c					\
+		ft_printf/ft_dprintf.c				\
 		ft_printf/ft_printf.c				\
 		ft_printf/ft_putchar_pf.c			\
 		ft_printf/ft_puthexa_pf.c			\

@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:25:34 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 14:09:29 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:42:27 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		ft_isnum(int c);
 int		ft_isprint(int c);
 
 /*FT_PRINTF*/
+int		ft_dprintf(int fd, const char *format, ...);
 int		ft_printf(const char *format, ...);
 void	ft_putchar_pf(char c, int fd, int *nb_char);
 void	ft_puthexa_pf(unsigned int nbr, char *base, int *nb_char);
