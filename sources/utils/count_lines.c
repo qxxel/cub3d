@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:14:59 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/12/10 12:25:20 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:10:52 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	count_lines(char *file)
 	}
 	if (c != '\n')
 		count++;
-	if(!nbchar)
+	if (!nbchar)
 		return (write(2, "cub3d: the file in argument is empty\n", 37), -1);
 	close(fd);
 	return (count);

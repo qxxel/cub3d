@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:25:37 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/12/15 22:16:51 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:10:33 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	clear_image(t_data *data)
 {
 	int	x;
-	int y;
+	int	y;
 
 	y = 0;
 	while (y <= HEIGHT)

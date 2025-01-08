@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err.c                                              :+:      :+:    :+:   */
+/*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 11:07:29 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 14:11:15 by agerbaud         ###   ########.fr       */
+/*   Created: 2025/01/08 13:44:14 by agerbaud          #+#    #+#             */
+/*   Updated: 2025/01/08 14:11:44 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-bool	err(char *str)
+bool	get_textures(char **cub, t_texture *texture)
 {
-	int	i;
-
-	i = ft_strlen(str);
-	write(2, str, i);
-	return (true);
+	if (get_image(cub, "NO ", &texture->north) \
+		|| get_image(cub, "SO ", &texture->south) \
+		|| get_image(cub, "WE ", &texture->west) \
+		|| get_image(cub, "EA ", &texture->east) \
+		|| get_color(cub, "F ", &texture->floor) \
+		|| get_color(cub, "C ", &texture->ceiling))
+		return (true);
+	return (false);
 }

@@ -6,7 +6,7 @@
 #    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 11:34:08 by agerbaud          #+#    #+#              #
-#    Updated: 2024/12/15 22:19:52 by agerbaud         ###   ########.fr        #
+#    Updated: 2025/01/08 14:06:50 by agerbaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS =	sources/cub3d.c					\
 		sources/parsing/get_color.c		\
 		sources/parsing/get_image.c		\
 		sources/parsing/get_map.c		\
+		sources/parsing/get_textures.c	\
 		sources/parsing/parse_args.c	\
 		sources/parsing/parse_file.c	\
 		sources/parsing/parse_map.c		\
