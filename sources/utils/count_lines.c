@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   count_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:14:59 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/12/10 12:25:20 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:57:55 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 int	count_lines(char *file)
 {

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 00:45:30 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/12/10 12:25:20 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:56:40 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 static int	parse_image(char *path)
 {
 	int	i;
-	
+
 	i = 0;
 	if (ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 4))
 		return (err("cub3d: textures must be .xpm\n"));

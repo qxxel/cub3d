@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   destroyer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:06:45 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/12/10 16:11:03 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:57:23 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 static void	free_tab(char **map)
 {

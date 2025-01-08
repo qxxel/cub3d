@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:19:03 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/12/10 12:55:26 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:56:52 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 static void	check_rest_empty(char **map, int *i)
 {
@@ -60,7 +60,7 @@ static int	find_map(char **cub)
 	int	i;
 	int	j;
 	int	all_good[6];
-	
+
 	i = 0;
 	ft_bzero_int(all_good, 6);
 	while (cub[i] && (!all_good[0] || !all_good[1] || !all_good[2]\
@@ -91,7 +91,7 @@ char	**get_map(char **cub)
 {
 	int		i;
 	char	**map;
-	
+
 	i = find_map(cub);
 	map = copy_map(cub, i);
 	return (map);

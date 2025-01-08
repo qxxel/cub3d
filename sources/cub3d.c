@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:05:16 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/12/14 01:42:01 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:46:38 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	
+
 	if (parse_args(--argc, ++argv, &game))
 		return (1);
 	ft_raycast(&game);

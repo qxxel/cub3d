@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   clear_image.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:25:37 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/12/15 22:16:51 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:57:51 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 void	clear_image(t_data *data)
 {

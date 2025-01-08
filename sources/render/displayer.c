@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   displayer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/07 14:31:22 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:57:31 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 static bool	touch(t_game *game, int x_ray, int y_ray)
 {
@@ -35,7 +35,6 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 	wall_height = 100 * HEIGHT / distance;
 	start = HEIGHT / 2 - wall_height / 2;
 	end = start + wall_height;
-	(void)i;
 	while (start < end)
 	{
 		put_pixel(&game->img_data, 0x0000FF, *i, start);

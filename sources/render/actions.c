@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:27:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/07 15:00:29 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:21:28 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 static bool	check_wall(t_game *game, float x_dest, float y_dest)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:43 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/12/11 14:25:07 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:57:11 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 static int  check_open(char c)
 {
@@ -41,7 +41,7 @@ static int check_rest_empty(char **map, int i)
 static int check_empty_lines(char **map)
 {
     int i;
-    
+
     i = 0;
     while (map[i])
     {

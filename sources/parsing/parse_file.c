@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 22:41:50 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/12/10 12:25:20 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:57:03 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 static int	find_define(char **cub, char *def, int i)
 {
     int j;
-    
+
 	j = 0;
     while (cub[i][j] == ' ')
 		j++;
@@ -52,7 +52,7 @@ static int check_define_first(char **cub)
     int     count[6];
 
     i = 0;
-    
+    // mreynaud : ft_bzero_int(count, 6);
     while (cub[i] && !(count[0] && count[1] && count[2]\
         && count[3] && count[4] && count[5]))
     {
