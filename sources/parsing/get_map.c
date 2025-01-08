@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:19:03 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 14:59:51 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:59:43 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ static void	check_rest_empty(char **map, int *i)
 	}
 }
 
+// static bool	check_line_exist(char **map, int j)
+// {
+// 	if (!map[j])
+// 	{
+// 		perror("cub3d");
+// 		while (j > 0)
+// 			free(map[j--]);
+// 		free(map);
+// 		return (false);
+// 	}
+// 	return (true);
+// }
+
 static char	**copy_map(char **cub, int i)
 {
 	int		j;
@@ -48,11 +61,8 @@ static char	**copy_map(char **cub, int i)
 	while (cub[i])
 	{
 		map[j] = ft_strdup(cub[i]);
-		if (!map[j++])
-		{
-			perror("cub3d");
-			return (NULL); // add free
-		}
+		if (!check_line_exist(map, j))
+			return (NULL);
 		i++;
 	}
 	map[j] = NULL;

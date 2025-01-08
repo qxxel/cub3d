@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 17:38:56 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:58:59 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ bool	init_minimap(t_game *game);
 int		motionnotify(int x, int y, t_game *param);
 
 //	Utils
+bool	check_line_exist(char **map, int j);
 void	clear_image(t_data *data);
 int		count_lines(char *file);
 bool	err(char *str);

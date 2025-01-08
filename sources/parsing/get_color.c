@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 17:47:21 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:00:20 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ bool	get_color(char **cub, char *part, t_color *color)
 	color->r = ft_atoi(rgb[0]);
 	color->g = ft_atoi(rgb[1]);
 	color->b = ft_atoi(rgb[2]);
-	ft_free_table(rgb); // free(): invalid pointer??
+	ft_free_table(rgb);
 	if (check_color(color, part))
 		return (true);
 	return (false);
