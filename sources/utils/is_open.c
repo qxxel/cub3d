@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   is_open.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 11:05:16 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 17:36:05 by agerbaud         ###   ########.fr       */
+/*   Created: 2025/01/08 17:37:09 by agerbaud          #+#    #+#             */
+/*   Updated: 2025/01/08 17:38:40 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+bool	check_open(char c)
 {
-	t_game	game;
-
-	if (parse_args(--argc, ++argv, &game))
-		return (1);
-	ft_raycast(&game);
-	return (0);
+	if (c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (true);
+	return (false);
 }

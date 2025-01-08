@@ -3,23 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:43 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 15:00:06 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:40:11 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	check_open(char c)
-{
-	if (c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (0);
-	return (1);
-}
-
-static int	check_rest_empty(char **map, int i)
+static bool	check_rest_empty(char **map, int i)
 {
 	int	j;
 
@@ -32,13 +25,13 @@ static int	check_rest_empty(char **map, int i)
 				j++;
 		}
 		if (map[i][j] != '\0')
-			return (1);
+			return (true);
 		i++;
 	}
-	return (0);
+	return (false);
 }
 
-static int	check_empty_lines(char **map)
+static bool	check_empty_lines(char **map)
 {
 	int	i;
 
@@ -48,35 +41,54 @@ static int	check_empty_lines(char **map)
 		if (map[i][0] == '\0')
 		{
 			if (check_rest_empty(map, i))
-				return (1);
+				return (true);
 			else
 			{
 				map[i] = NULL;
-				return (0);
+				return (false);
 			}
 		}
 		i++;
 	}
-	return (0);
+	return (false);
 }
 
-static int	check_sides(char **map, int i, int j)
+static bool	check_sides(char **map, int i, int j)
 {
 	if (i == 0 || j == 0 || \
 		(size_t)j == ft_strlen(map[i]) - 1 || (size_t)i == ft_tablen(map) - 1)
-		return (1);
+		return (true);
 	if (j > 0 && map[i][j - 1] == ' ')
-		return (1);
+		return (true);
 	if (i > 0 && map[i - 1][j] == ' ')
-		return (1);
+		return (true);
 	if (map[i][j + 1] && (map[i][j + 1] == ' ' || map[i][j + 1] == '\0'))
-		return (1);
+		return (true);
 	if (map[i + 1] && map[i + 1][j] == ' ')
-		return (1);
-	return (0);
+		return (true);
+	return (false);
 }
 
-int	parse_map(char **map, t_game *game)
+bool	check_char(t_game *game, int *count_spawn, int i, int j)
+{
+	if (game->map[i][j] == 'N' || game->map[i][j] == 'S' \
+		|| game->map[i][j] == 'W' || game->map[i][j] == 'E')
+	{
+		game->player.x = j * 64;
+		game->player.y = i * 64;
+		*count_spawn++;
+	}
+	if (!(game->map[i][j] == 'N') && !(game->map[i][j] == 'S') \
+		&& !(game->map[i][j] == 'W') && !(game->map[i][j] == 'E') \
+		&& !(game->map[i][j] == '1') && !(game->map[i][j] == '0') \
+		&& !(game->map[i][j] == ' '))
+		return (err("cub3d: the map has unknown charachter\n"));
+	if (is_open(game->map[i][j]) && check_sides(game->map, i, j))
+		return (err("cub3d: the map is not closed\n"));
+	return (false);
+}
+
+bool	parse_map(char **map, t_game *game)
 {
 	int	i;
 	int	j;
@@ -93,25 +105,13 @@ int	parse_map(char **map, t_game *game)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' \
-				|| map[i][j] == 'W' || map[i][j] == 'E')
-			{
-				game->player.x = j * 64;
-				game->player.y = i * 64;
-				count_spawn++;
-			}
-			if (!(map[i][j] == 'N') && !(map[i][j] == 'S') \
-				&& !(map[i][j] == 'W') && !(map[i][j] == 'E') \
-				&& !(map[i][j] == '1') && !(map[i][j] == '0') \
-				&& !(map[i][j] == ' '))
-				return (err("cub3d: the map has unknown charachter\n"));
-			if (!check_open(map[i][j]) && check_sides(map, i, j))
-				return (err("cub3d: the map is not closed\n"));
+			if (check_char(game, &count_spawn, i, j))
+				return (true);
 			j++;
 		}
 		i++;
 	}
 	if (count_spawn != 1)
 		return (err("cub3d: the map hasn't the right number of spawnpoint\n"));
-	return (0);
+	return (false);
 }

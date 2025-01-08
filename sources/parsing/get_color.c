@@ -6,11 +6,37 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 16:45:18 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:47:21 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static bool	check_rgb(char **rgb, char *part, int i, int j)
+{
+	while (rgb[i][j] == ' ')
+		j++;
+	if (rgb[i][j] == '-')
+		j++;
+	while (rgb[i][j])
+	{
+		if (!ft_isnum(rgb[i][j]))
+		{
+			if (j > 0 && ft_isnum(rgb[i][j - 1]))
+			{
+				while (rgb[i][j] == ' ')
+					j++;
+				if (rgb[i][j] == '\0')
+					return (false);
+			}
+			ft_dprintf(2, "cub3d: the rgb code of %s\
+				is not only made up of numbers\n", part);
+			return (true);
+		}
+		j++;
+	}
+	return (false);
+}
 
 static bool	parse_rgb(char **rgb, char *part)
 {
@@ -26,27 +52,8 @@ static bool	parse_rgb(char **rgb, char *part)
 			ft_dprintf(2, "cub3d: the rgb code of %s is empty\n", part);
 			return (true);
 		}
-		while (rgb[i][j] == ' ')
-			j++;
-		if (rgb[i][j] == '-')
-			j++;
-		while (rgb[i][j])
-		{
-			if (!ft_isnum(rgb[i][j]))
-			{
-				if (j > 0 && ft_isnum(rgb[i][j - 1]))
-				{
-					while (rgb[i][j] == ' ')
-						j++;
-					if (rgb[i][j] == '\0')
-						return (false);
-				}
-				ft_dprintf(2, "cub3d: the rgb code of %s\
-					is not only made up of numbers\n", part);
-				return (true);
-			}
-			j++;
-		}
+		if (check_rgb(rgb, part, i, j))
+			return (true);
 		i++;
 	}
 	if (i != 3)

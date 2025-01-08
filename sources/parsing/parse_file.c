@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 22:41:50 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 14:59:47 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:34:14 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	check_define(char **cub, t_countdef *countdef)
 	}
 }
 
-static int	check_define_first(char **cub)
+static bool	check_define_first(char **cub)
 {
 	int	i;
 	int	count[6];
@@ -68,13 +68,13 @@ static int	check_define_first(char **cub)
 		else if (!find_define(cub, "C ", i))
 			count[5] = 1;
 		else if (!(cub[i][0] == '\0'))
-			return (1);
+			return (true);
 		i++;
 	}
-	return (0);
+	return (false);
 }
 
-int	parse_file(char **cub)
+bool	parse_file(char **cub)
 {
 	t_countdef	countdef;
 
@@ -93,5 +93,5 @@ int	parse_file(char **cub)
 		return (err("cub3d: missing definition of textures\n"));
 	if (check_define_first(cub))
 		return (err("cub3d: defines aren't before the map\n"));
-	return (0);
+	return (false);
 }

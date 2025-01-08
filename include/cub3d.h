@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 15:03:20 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:38:56 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,8 @@ bool	get_image(char **cub, char *direction, t_image *path);
 char	**get_map(char **cub);
 bool	get_textures(char **cub, t_texture *texture);
 bool	parse_args(int argc, char **argv, t_game *game);
-int		parse_file(char **cub);
-int 	parse_map(char **map, t_game *game);
+bool	parse_file(char **cub);
+bool	parse_map(char **map, t_game *game);
 
 //	Raycasting
 int		actions(t_game *param);
@@ -159,6 +159,7 @@ void	clear_image(t_data *data);
 int		count_lines(char *file);
 bool	err(char *str);
 void	*ft_bzero_int(int *s, size_t n);
+bool	is_open(char c);
 char	**put_in_table(char	*file);
 void	put_pixel(t_data *data, int color, int x, int y);
 
