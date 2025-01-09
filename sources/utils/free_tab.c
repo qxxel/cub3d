@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   free_tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 11:05:16 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/09 14:45:49 by agerbaud         ###   ########.fr       */
+/*   Created: 2025/01/09 14:41:37 by agerbaud          #+#    #+#             */
+/*   Updated: 2025/01/09 14:42:51 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+void	free_tab(char **tab)
 {
-	t_game	game;
+	int	i;
 
-	if (parse_args(--argc, ++argv, &game))
-		return (1);
-	ft_raycast(&game);
-	return (0);
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab[i]);
+	free(tab);
 }
