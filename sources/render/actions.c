@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:27:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/09 16:19:50 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 21:23:30 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static bool	check_wall(t_game *game, float x_dest, float y_dest)
 {
-	if (game->map[(int)y_dest / 64][(int)x_dest / 64] == '1')
+	if (game->map[(int)y_dest][(int)x_dest] == '1')
 		return (true);
-	if (game->map[(int)(y_dest + 20) / 64][(int)x_dest / 64] == '1')
+	if (game->map[(int)(y_dest + 0.1)][(int)x_dest] == '1')
 		return (true);
-	if (game->map[(int)y_dest / 64][(int)(x_dest + 20) / 64] == '1')
+	if (game->map[(int)y_dest][(int)(x_dest + 0.1)] == '1')
 		return (true);
-	if (game->map[(int)(y_dest + 20) / 64][(int)(x_dest + 20) / 64] == '1')
+	if (game->map[(int)(y_dest + 0.1)][(int)(x_dest + 0.1)] == '1')
 		return (true);
 	return (false);
 }

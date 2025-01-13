@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 21:24:01 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 21:50:06 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 static bool	touch(t_game *game, int x_ray, int y_ray)
 {
-	int	x;
-	int	y;
-
-	x = x_ray / 64;
-	y = y_ray / 64;
-	if (game->map[y][x] == '1')
+	if (game->map[(int)y_ray][(int)x_ray] == '1')
 		return (true);
 	return (false);
 }
@@ -50,12 +45,10 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 	int		j = 0;
 
 	distance = sqrt(pow(game->player.x - x_ray, 2) + pow(game->player.y - y_ray, 2)) * cos(game->player.angle - angle);
-	wall_height = 100 * HEIGHT / distance;
+	wall_height = 1.6 * HEIGHT / distance;
 	start = HEIGHT / 2 - wall_height / 2;
 	start2 = start;
 	end = start + wall_height;
-	printf("distance = %f\nwall_height = %f\nx_ray = %d\ny_ray = %d\ni = [%d]\nangle = %f\n\n", distance, wall_height, (int)x_ray % 64,  (int)y_ray % 64, *i, angle);
-	// (void)i;
 	while (j < start)
 		put_pixel(&game->img_data, game->texture.ceiling.color_code, *i, j++);
 	while (start < end)
@@ -75,10 +68,10 @@ static void	send_ray(t_game *game, float angle, int	*i)
 	float	x_ray;
 	float	y_ray;
 
-	angle_cos = cos(angle);
-	angle_sin = sin(angle);
-	x_ray = game->player.x + 10;
-	y_ray = game->player.y + 10;
+	angle_cos = cos(angle) / 64;
+	angle_sin = sin(angle) / 64;
+	x_ray = game->player.x;
+	y_ray = game->player.y;
 	while (!touch(game, x_ray, y_ray))
 	{
 		// put_pixel(&game->img_data, 0xFF0000, x_ray, y_ray);
@@ -135,7 +128,7 @@ void	display_map(t_game *game)
 		while (game->map[y][x])
 		{
 			if (game->map[y][x] == '1')
-				display_square(&game->img_data, 64, x * 64, y * 64, 0x0000FF);
+				display_square(&game->img_data, 1, x, y, 0x0000FF);
 			x++;
 		}
 		y++;
