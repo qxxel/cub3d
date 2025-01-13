@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 18:05:01 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:46:30 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,14 @@ static bool	touch(t_game *game, int x_ray, int y_ray)
 	return (false);
 }
 
-int	put_img_wall(t_image *north, int percent, int x)
+int	put_img_wall(t_image *north, float percent_y, int x)
 {
-	int	y;
 	int	pos;
+	int	*color;
 
-	y = percent * north->height / 100;
-	pos = (y * 256);
-	// printf("[%d]\n", find_color_code(north->img_data.data[pos + 2], north->img_data.data[pos + 1], north->img_data.data[pos]));
-	return (find_color_code(north->img_data.data[pos + 2], north->img_data.data[pos + 1], north->img_data.data[pos]));
-	(void)north;
-	(void)x;
-	(void)y;
-	return (0xFF00FF);
+	pos = (((percent_y * north->height) * north->img_data.size_line) + (x * (north->img_data.bpp / 8)));
+	color = (int *)(north->img_data.data + pos);
+	return (*color);
 }
 
 static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float angle)
@@ -44,16 +39,18 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 	float	distance;
 	float	wall_height;
 	int		start;
+	int		start2;
 	int		end;
 
 	distance = sqrt(pow(game->player.x - x_ray, 2) + pow(game->player.y - y_ray, 2)) * cos(game->player.angle - angle);
 	wall_height = 100 * HEIGHT / distance;
 	start = HEIGHT / 2 - wall_height / 2;
+	start2 = start;
 	end = start + wall_height;
 	(void)i;
 	while (start < end)
 	{
-		put_pixel(&game->img_data, put_img_wall(&game->texture.north, ((end - start) * 100 / wall_height), 0), *i, start);
+		put_pixel(&game->img_data, put_img_wall(&game->texture.north, (start - start2) / wall_height, 0), *i, start);
 		start++;
 	}
 }
