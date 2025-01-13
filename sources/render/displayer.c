@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 17:53:21 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:03:11 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ int	put_img_wall(t_image *north, int percent, int x)
 	int	pos;
 
 	y = percent * north->height / 100;
-	// ft_printf("%d\n", y);
 	pos = (y * 256);
-	ft_printf("%s\n", north->img_data.data[pos]);
-	return (north->img_data.data[pos]); //c'est un char donc ca marche pas, faut convertire en int
+	printf("[%d]\n", find_color_code(north->img_data.data[pos + 2], north->img_data.data[pos + 1], north->img_data.data[pos]));
+	return (find_color_code(north->img_data.data[pos + 2], north->img_data.data[pos + 1], north->img_data.data[pos]));
 	(void)north;
 	(void)x;
 	(void)y;

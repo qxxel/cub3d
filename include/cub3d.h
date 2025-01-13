@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 17:40:05 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:44:39 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ bool	check_line_exist(char **map, int j);
 void	clear_image(t_data *data);
 int		count_lines(char *file);
 bool	err(char *str);
-void	find_color_code(t_color *color);
+int		find_color_code(int r, int g, int b);
 void	free_tab(char **map);
 void	*ft_bzero_int(int *s, size_t n);
 void	init_variables(t_game *game);
