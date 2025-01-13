@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:29:51 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 13:57:42 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 23:27:36 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	keyrelease(int keycode, t_game *param)
 int motionnotify(int x, int y, t_game *param)
 {
 	if (param->mouse.moved)
-		param->player.angle += (x - param->mouse.past_x) * 0.0008;
+		param->player.angle -= (x - param->mouse.past_x) * 0.0008;
 	param->mouse.past_x = x;
 	param->mouse.past_y = y;
 	param->mouse.moved = true;

@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:02:25 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 16:22:13 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 22:46:13 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	init_game_variables(t_game *game)
 	game->player.x = 0;
 	game->player.y = 0;
 	game->player.angle = 0;
+	game->player.spawn = 0;
 	game->mouse.past_x = WIDTH / 2;
 	game->mouse.past_y = HEIGHT / 2;
 	game->mouse.moved = false;
