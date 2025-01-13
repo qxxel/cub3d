@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   displayer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/01/13 23:28:30 by agerbaud         ###   ########.fr       */
+=======
+/*   Updated: 2025/01/13 21:50:06 by mreynaud         ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +23,16 @@ static bool	touch(t_game *game, int x_ray, int y_ray)
 	return (false);
 }
 
-int	put_img_wall(t_image *north, float percent_y, int x)
+int	put_img_wall(t_image *north, float percent_y, float percent_x)
 {
 	int	y;
+	int	x;
 	int	pos;
 	unsigned int	*color;
 
+	x = percent_x * north->width;
+	// printf("[%d]\n", x % 64);
+	// x = percent_x;
 	y = percent_y * north->height;
 	pos = (y * north->img_data.size_line + x * (north->img_data.bpp / 8));
 	color = (unsigned int *)(north->img_data.data + pos);
@@ -49,7 +57,7 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 		put_pixel(&game->img_data, game->texture.ceiling.color_code, *i, j++);
 	while (start < end)
 	{
-		put_pixel(&game->img_data, put_img_wall(&game->texture.north, (start - start2) / wall_height, 0), *i, start);
+		put_pixel(&game->img_data, put_img_wall(&game->texture.north, (start - start2) / wall_height, (float)((int)x_ray % 64) / 64), *i, start);
 		start++;
 	}
 	j = end;
