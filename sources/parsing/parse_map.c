@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:43 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 17:56:39 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 21:10:32 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ bool	check_char(t_game *game, int *count_spawn, int i, int j)
 	if (game->map[i][j] == 'N' || game->map[i][j] == 'S' \
 		|| game->map[i][j] == 'W' || game->map[i][j] == 'E')
 	{
-		game->player.x = j * 64;
-		game->player.y = i * 64;
+		game->player.x = j + 0.5;
+		game->player.y = i + 0.5;
 		(*count_spawn)++;
 	}
 	if (!(game->map[i][j] == 'N') && !(game->map[i][j] == 'S') \

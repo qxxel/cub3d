@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 17:44:39 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 21:15:30 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define WALL_HEIGHT	720
 # define WALL_DISTANCE	360.138862107
 
-# define SPEED			5
+# define SPEED			0.1
 # define ANGLE_SPEED	0.05
 
 typedef struct	s_countdef

@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:02:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 18:38:07 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 21:29:20 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	update_img(t_game *param)
 {
 	actions(param);
 	clear_image(&param->img_data);
-	// display_square(&param->img_data, 20, param->player.x, param->player.y, 0x008000);
+	// display_square(&param->img_data, 1, param->player.x, param->player.y, 0x008000);
 	// display_map(param);
 	display_rays(param);
 	if (!param->mouse.showed\
