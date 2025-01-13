@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:02:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/09 14:30:13 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:41:06 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	init_game(t_game *game) // proteger toutes les fonctions mlx ??
 	game->mouse.showed = false;
 	game->mouse.past_y = HEIGHT / 2;
 	// init_minimap(game);
+	init_texture(game, &game->texture);
 }
 
 void	ft_raycast(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 13:57:31 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/10 18:34:02 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@ static bool	touch(t_game *game, int x_ray, int y_ray)
 	return (false);
 }
 
+int	put_img_wall(t_image *north, int percent, int x)
+{
+	int	y;
+	int	pos;
+
+	y = percent * north->height / 100;
+	// ft_printf("%d\n", y);
+	pos = (y * 256);
+	ft_printf("%s\n", north->img_data.data[pos]);
+	return (north->img_data.data[pos]); //c'est un char donc ca marche pas, faut convertire en int
+	(void)north;
+	(void)x;
+	(void)y;
+	return (0xFF00FF);
+}
+
 static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float angle)
 {
 	float	distance;
@@ -37,7 +53,7 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 	end = start + wall_height;
 	while (start < end)
 	{
-		put_pixel(&game->img_data, 0x0000FF, *i, start);
+		put_pixel(&game->img_data, put_img_wall(&game->texture.north, ((end - start) * 100 / wall_height), 0), *i, start);
 		start++;
 	}
 }

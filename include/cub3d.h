@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/09 14:41:52 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:42:49 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,21 @@ typedef struct	s_color
 	int	b;
 }	t_color;
 
+typedef struct s_data
+{
+	char		*data;
+	int			bpp;
+	int			size_line;
+	int			endian;
+}	t_data;
+
 typedef struct	s_image
 {
 	char	*path;
+	void	*img;
+	t_data	img_data;
+	int		width;
+	int		height;
 }	t_image;
 
 typedef struct	s_key
@@ -108,15 +120,6 @@ typedef struct	s_mouse
 	bool	showed;
 }	t_mouse;
 
-typedef struct s_data
-{
-	char		*data;
-	int			bpp;
-	int			size_line;
-	int			endian;
-}	t_data;
-
-
 typedef struct	s_game
 {
 	t_texture	texture;
@@ -152,6 +155,7 @@ void	ft_raycast(t_game *game);
 int		keypress(int keycode, t_game *param);
 int		keyrelease(int keycode, t_game *param);
 bool	init_minimap(t_game *game);
+bool	init_texture(t_game *game, t_texture *txr);
 int		motionnotify(int x, int y, t_game *param);
 
 //	Utils
