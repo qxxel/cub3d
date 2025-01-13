@@ -6,7 +6,7 @@
 #    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:27:43 by mreynaud          #+#    #+#              #
-#    Updated: 2025/01/09 14:42:04 by agerbaud         ###   ########.fr        #
+#    Updated: 2025/01/13 17:22:16 by agerbaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,10 @@ SRCS =	sources/cub3d.c						\
 		sources/utils/clear_image.c			\
 		sources/utils/count_lines.c			\
 		sources/utils/err.c					\
+		sources/utils/find_color_code.c		\
 		sources/utils/free_tab.c			\
 		sources/utils/ft_bzero_int.c		\
+		sources/utils/init_variables.c		\
 		sources/utils/is_open.c				\
 		sources/utils/put_in_table.c		\
 		sources/utils/put_pixel.c

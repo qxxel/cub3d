@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   displayer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 13:57:31 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:34:37 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 	wall_height = 100 * HEIGHT / distance;
 	start = HEIGHT / 2 - wall_height / 2;
 	end = start + wall_height;
+	(void)i;
 	while (start < end)
 	{
-		put_pixel(&game->img_data, 0x0000FF, *i, start);
+		// put_pixel(&game->img_data, 0x0000FF, *i, start);
 		start++;
 	}
 }
@@ -55,7 +56,7 @@ static void	send_ray(t_game *game, float angle, int	*i)
 	y_ray = game->player.y + 10;
 	while (!touch(game, x_ray, y_ray))
 	{
-		// put_pixel(&game->img_data, 0xFF0000, x_ray, y_ray);
+		put_pixel(&game->img_data, 0xFF0000, x_ray, y_ray);
 		x_ray += angle_cos;
 		y_ray += angle_sin;
 	}

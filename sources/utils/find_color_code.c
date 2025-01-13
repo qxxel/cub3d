@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   find_color_code.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 11:05:16 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/10 17:15:52 by agerbaud         ###   ########.fr       */
+/*   Created: 2025/01/13 17:06:06 by agerbaud          #+#    #+#             */
+/*   Updated: 2025/01/13 17:22:57 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	find_color_code(t_color *color)
 {
-	t_game	game;
+	int	final_color;
 
-	init_variables(&game);
-	if (parse_args(--argc, ++argv, &game))
-		return (1);
-	ft_raycast(&game);
-	return (0);
+	final_color = 0;
+	final_color += (color->r << 16);
+	final_color += (color->g << 8);
+	final_color += color->b;
+	return (final_color);
 }

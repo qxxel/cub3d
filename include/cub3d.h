@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/09 14:41:52 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:22:40 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct	s_color
 	int	r;
 	int	g;
 	int	b;
+	int	color_code;
 }	t_color;
 
 typedef struct	s_image
@@ -159,8 +160,10 @@ bool	check_line_exist(char **map, int j);
 void	clear_image(t_data *data);
 int		count_lines(char *file);
 bool	err(char *str);
+int		find_color_code(t_color *color);
 void	free_tab(char **map);
 void	*ft_bzero_int(int *s, size_t n);
+void	init_variables(t_game *game);
 bool	is_open(char c);
 char	**put_in_table(char	*file);
 void	put_pixel(t_data *data, int color, int x, int y);
