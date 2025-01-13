@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:27:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 21:23:30 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 23:27:17 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ int	actions(t_game *param)
 	float 	angle_sin;
 
 	if (param->key.left)
-		param->player.angle -= ANGLE_SPEED;
-	if (param->key.right)
 		param->player.angle += ANGLE_SPEED;
+	if (param->key.right)
+		param->player.angle -= ANGLE_SPEED;
 	if (param->player.angle > 2 * PI)
 		param->player.angle -= 2 * PI;
 	if (param->player.angle < 0)

@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:02:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 21:29:20 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 23:28:10 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	update_img(t_game *param)
 {
 	actions(param);
 	clear_image(&param->img_data);
-	// display_square(&param->img_data, 1, param->player.x, param->player.y, 0x008000);
-	// display_map(param);
+	display_square(&param->img_data, 20, param->player.x * 64, param->player.y * 64, 0x008000);
+	display_map(param);
 	display_rays(param);
 	if (!param->mouse.showed\
 		&& (param->mouse.past_x > WIDTH * 0.8 || param->mouse.past_x < WIDTH * 0.2 ||\
@@ -41,7 +41,14 @@ void	init_game(t_game *game) // proteger toutes les fonctions mlx ??
 	game->img_data.data = mlx_get_data_addr(game->img, &game->img_data.bpp,\
 		&game->img_data.size_line, &game->img_data.endian);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	game->player.angle = 0;
+	if (game->player.spawn == 'E')
+		game->player.angle = 0;
+	if (game->player.spawn == 'N')
+		game->player.angle = PI / 2;
+	if (game->player.spawn == 'W')
+		game->player.angle = PI;
+	if (game->player.spawn == 'S')
+		game->player.angle = (3 * PI) / 2;
 	game->key.w = false;
 	game->key.s = false;
 	game->key.a = false;

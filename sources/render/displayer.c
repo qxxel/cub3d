@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 23:27:27 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/14 00:01:23 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,13 @@ static void	send_ray(t_game *game, float angle, int	*i)
 	float	y_ray;
 
 	angle_cos = cos(angle) / 64;
-	angle_sin = sin(angle) / 64;
+	angle_sin = -1 * (sin(angle) / 64);
 	x_ray = game->player.x;
 	y_ray = game->player.y;
+	// (void)i;
 	while (!touch(game, x_ray, y_ray))
 	{
-		// put_pixel(&game->img_data, 0xFF0000, x_ray, y_ray);
+		// put_pixel(&game->img_data, 0xFF0000, x_ray * 64, y_ray * 64);
 		x_ray += angle_cos;
 		y_ray += angle_sin;
 	}
@@ -99,12 +100,12 @@ void	display_rays(t_game *game)
 
 	fraction = PI / 3 / WIDTH;
 	angle = game->player.angle - (PI / 6);
-	i = 0;
-	while (i < WIDTH)
+	i = WIDTH;
+	while (i > 0)
 	{
 		send_ray(game, angle, &i);
 		angle += fraction;
-		i++;
+		i--;
 	}
 }
 
@@ -138,7 +139,7 @@ void	display_map(t_game *game)
 		while (game->map[y][x])
 		{
 			if (game->map[y][x] == '1')
-				display_square(&game->img_data, 1, x, y, 0x0000FF);
+				display_square(&game->img_data, 64, x * 64, y * 64, 0x0000FF);
 			x++;
 		}
 		y++;

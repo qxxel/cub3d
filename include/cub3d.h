@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 21:15:30 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 22:45:13 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct	s_player
 	float	x;
 	float	y;
 	float	angle;
+	char	spawn;
 }	t_player;
 
 typedef struct	s_mouse
