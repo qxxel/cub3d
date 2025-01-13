@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   displayer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/01/13 23:28:30 by agerbaud         ###   ########.fr       */
-=======
-/*   Updated: 2025/01/13 21:50:06 by mreynaud         ###   ########.fr       */
->>>>>>> refs/remotes/origin/main
+/*   Updated: 2025/01/13 23:31:37 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
