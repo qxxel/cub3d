@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:03:29 by mreynaud          #+#    #+#             */
-/*   Updated: 2025/01/10 17:42:40 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 23:03:37 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,9 @@ static bool init_img_texture(void *mlx_ptr, t_image *img)
 bool	init_texture(t_game *game, t_texture *txr)
 {
 	if (init_img_texture(game->mlx, &txr->north) \
-		|| init_img_texture(game->mlx, &txr->south) \
-		|| init_img_texture(game->mlx, &txr->west) \
-		|| init_img_texture(game->mlx, &txr->east))
-	{
-		print_texture(&txr->north);
+			&& init_img_texture(game->mlx, &txr->south) \
+			&& init_img_texture(game->mlx, &txr->west) \
+			&& init_img_texture(game->mlx, &txr->east))
 		return (true);
-	}
 	return (false);
 }

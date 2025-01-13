@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 21:50:06 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 23:27:27 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,33 @@ static bool	touch(t_game *game, int x_ray, int y_ray)
 	return (false);
 }
 
-int	put_img_wall(t_image *north, float percent_y, float percent_x)
+static int	put_img_wall(t_image *img_txr, float percent_y, float percent_x)
 {
-	int	y;
-	int	x;
-	int	pos;
 	unsigned int	*color;
+	int	pos;
+	int	x;
+	int	y;
 
-	x = percent_x * north->width;
-	// printf("[%d]\n", x % 64);
-	// x = percent_x;
-	y = percent_y * north->height;
-	pos = (y * north->img_data.size_line + x * (north->img_data.bpp / 8));
-	color = (unsigned int *)(north->img_data.data + pos);
+	x = percent_x * img_txr->width;
+	y = percent_y * img_txr->height;
+	pos = (y * img_txr->img_data.size_line + x * (img_txr->img_data.bpp / 8));
+	color = (unsigned int *)(img_txr->img_data.data + pos);
 	return (*color);
+}
+
+static int	put_txr_wall(t_texture *txr, float percent_y, float x_ray, float y_ray)
+{
+	y_ray = (y_ray - (int)y_ray);
+	x_ray = (x_ray - (int)x_ray);
+	if (y_ray >= 1 - 1 / 64.0)
+		return(put_img_wall(&txr->north, percent_y, x_ray));
+	else if (x_ray <= 0 + 1 / 64.0)
+		return(put_img_wall(&txr->east, percent_y, y_ray));
+	else if (y_ray <= 0 + 1 / 64.0)
+		return(put_img_wall(&txr->south, percent_y, x_ray));
+	else if (x_ray >= 1 - 1 / 64.0)
+		return(put_img_wall(&txr->west, percent_y, y_ray));
+	return (0);
 }
 
 static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float angle)
@@ -40,23 +53,20 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 	float	distance;
 	float	wall_height;
 	int		start;
-	int		start2;
-	int		end;
-	int		j = 0;
+	int		j;
 
 	distance = sqrt(pow(game->player.x - x_ray, 2) + pow(game->player.y - y_ray, 2)) * cos(game->player.angle - angle);
 	wall_height = 1.6 * HEIGHT / distance;
 	start = HEIGHT / 2 - wall_height / 2;
-	start2 = start;
-	end = start + wall_height;
+	printf("");
+	j = 0;
 	while (j < start)
 		put_pixel(&game->img_data, game->texture.ceiling.color_code, *i, j++);
-	while (start < end)
+	while (j < start + wall_height)
 	{
-		put_pixel(&game->img_data, put_img_wall(&game->texture.north, (start - start2) / wall_height, (float)((int)x_ray % 64) / 64), *i, start);
-		start++;
+		put_pixel(&game->img_data, put_txr_wall(&game->texture, (j - start) / wall_height, x_ray, y_ray), *i, j);
+		j++;
 	}
-	j = end;
 	while (j < HEIGHT)
 		put_pixel(&game->img_data, game->texture.floor.color_code, *i, j++);
 }
