@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/10 18:34:02 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:33:59 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 	wall_height = 100 * HEIGHT / distance;
 	start = HEIGHT / 2 - wall_height / 2;
 	end = start + wall_height;
+	(void)i;
 	while (start < end)
 	{
 		put_pixel(&game->img_data, put_img_wall(&game->texture.north, ((end - start) * 100 / wall_height), 0), *i, start);
@@ -71,7 +72,7 @@ static void	send_ray(t_game *game, float angle, int	*i)
 	y_ray = game->player.y + 10;
 	while (!touch(game, x_ray, y_ray))
 	{
-		// put_pixel(&game->img_data, 0xFF0000, x_ray, y_ray);
+		put_pixel(&game->img_data, 0xFF0000, x_ray, y_ray);
 		x_ray += angle_cos;
 		y_ray += angle_sin;
 	}

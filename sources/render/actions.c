@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:27:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 14:21:28 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:19:50 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	check_wall(t_game *game, float x_dest, float y_dest)
 	return (false);
 }
 
-static void	move_x(t_game *game, float angle_cos_sin)
+static float	move_x(t_game *game, float angle_cos_sin)
 {
 	int		i;
 	float	x_dest;
@@ -35,15 +35,13 @@ static void	move_x(t_game *game, float angle_cos_sin)
 	while (i < SPEED)
 	{
 		if (!check_wall(game, x_dest - i * angle_cos_sin, game->player.y))
-		{
-			game->player.x = x_dest - i * angle_cos_sin;
-			return ;
-		}
+			return (x_dest - i * angle_cos_sin);
 		i++;
 	}
+	return (game->player.x);
 }
 
-static void	move_y(t_game *game, float angle_cos_sin)
+static float	move_y(t_game *game, float angle_cos_sin)
 {
 	int		i;
 	float	y_dest;
@@ -53,12 +51,29 @@ static void	move_y(t_game *game, float angle_cos_sin)
 	while (i < SPEED)
 	{
 		if (!check_wall(game, game->player.x, y_dest - i * angle_cos_sin))
-		{
-			game->player.y = y_dest - i * angle_cos_sin;
-			return ;
-		}
+			return (y_dest - i * angle_cos_sin);
 		i++;
 	}
+	return (game->player.y);
+}
+
+void	move_player(t_game *game, float angle_cos, float angle_sin, int side)
+{
+	float	new_x;
+	float	new_y;
+
+	if (!side)
+	{
+		new_x = move_x(game, angle_cos);
+		new_y = move_y(game, angle_sin);
+	}
+	else
+	{
+		new_x = move_x(game, angle_sin);
+		new_y = move_y(game, angle_cos);
+	}
+	game->player.x = new_x;
+	game->player.y = new_y;
 }
 
 int	actions(t_game *param)
@@ -77,24 +92,12 @@ int	actions(t_game *param)
 	angle_cos = cosf(param->player.angle);
 	angle_sin = sinf(param->player.angle);
 	if (param->key.w == 1)
-	{
-		move_x(param, angle_cos);
-		move_y(param, angle_sin);
-	}
+		move_player(param, angle_cos, angle_sin, 0);
 	if (param->key.s == 1)
-	{
-		move_x(param, -angle_cos);
-		move_y(param, -angle_sin);
-	}
+		move_player(param, -angle_cos, -angle_sin, 0);
 	if (param->key.a == 1)
-	{
-		move_x(param, angle_sin);
-		move_y(param, -angle_cos);
-	}
+		move_player(param, -angle_cos, angle_sin, 1);
 	if (param->key.d == 1)
-	{
-		move_x(param, -angle_sin);
-		move_y(param, angle_cos);
-	}
+		move_player(param, angle_cos, -angle_sin, 1);
 	return (0);
 }
