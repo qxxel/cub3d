@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:19:13 by mreynaud          #+#    #+#              #
-#    Updated: 2025/01/08 14:57:26 by mreynaud         ###   ########.fr        #
+#    Updated: 2025/01/13 20:25:41 by agerbaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ WFLAGS			= -Wall -Werror -Wextra
 IFLAGS			= -I $(DIR_INC) -I $(DIR_INC_LIBFT) -I $(DIR_INC_MLX)
 DEPFLAGS		= -MMD -MP
 CFLAGS			= $(WFLAGS) $(DEPFLAGS) $(IFLAGS)
-LFLAGS			= -lXext -lX11 -lm
+LFLAGS			= -lXext -lX11 -lm -lXfixes
 
 CC				= cc
 RM				= rm -fr
