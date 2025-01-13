@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 17:33:59 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:54:45 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ int	put_img_wall(t_image *north, int percent, int x)
 	int	pos;
 
 	y = percent * north->height / 100;
-	// ft_printf("%d\n", y);
 	pos = (y * 256);
-	ft_printf("%s\n", north->img_data.data[pos]);
-	return (north->img_data.data[pos]); //c'est un char donc ca marche pas, faut convertire en int
+	printf("[%d]\n", find_color_code(north->img_data.data[pos + 2], north->img_data.data[pos + 1], north->img_data.data[pos]));
+	return (find_color_code(north->img_data.data[pos + 2], north->img_data.data[pos + 1], north->img_data.data[pos]));
 	(void)north;
 	(void)x;
 	(void)y;
@@ -72,7 +71,7 @@ static void	send_ray(t_game *game, float angle, int	*i)
 	y_ray = game->player.y + 10;
 	while (!touch(game, x_ray, y_ray))
 	{
-		put_pixel(&game->img_data, 0xFF0000, x_ray, y_ray);
+		// put_pixel(&game->img_data, 0xFF0000, x_ray, y_ray);
 		x_ray += angle_cos;
 		y_ray += angle_sin;
 	}

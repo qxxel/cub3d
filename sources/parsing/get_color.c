@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 17:40:21 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:45:17 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,6 @@ bool	get_color(char **cub, char *part, t_color *color)
 	ft_free_table(rgb);
 	if (check_color(color, part))
 		return (true);
-	find_color_code(color);
+	color->color_code = find_color_code(color->r, color->g, color->b);
 	return (false);
 }
