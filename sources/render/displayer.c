@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   displayer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 17:33:59 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:53:21 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	send_ray(t_game *game, float angle, int	*i)
 	y_ray = game->player.y + 10;
 	while (!touch(game, x_ray, y_ray))
 	{
-		put_pixel(&game->img_data, 0xFF0000, x_ray, y_ray);
+		// put_pixel(&game->img_data, 0xFF0000, x_ray, y_ray);
 		x_ray += angle_cos;
 		y_ray += angle_sin;
 	}

@@ -2,4 +2,5 @@
 *.d
 *.a
 cub3d
-cub.cub
+*.cub
+.build
