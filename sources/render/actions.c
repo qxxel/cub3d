@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:27:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 23:27:17 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/14 00:39:50 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void	move_player(t_game *game, float angle_cos, float angle_sin, int side)
 	if (!side)
 	{
 		new_x = move_x(game, angle_cos);
-		new_y = move_y(game, angle_sin);
+		new_y = move_y(game, -angle_sin);
 	}
 	else
 	{
-		new_x = move_x(game, angle_sin);
+		new_x = move_x(game, -angle_sin);
 		new_y = move_y(game, angle_cos);
 	}
 	game->player.x = new_x;

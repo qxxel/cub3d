@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/14 00:01:23 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/14 03:50:49 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,24 @@ static int	put_img_wall(t_image *img_txr, float percent_y, float percent_x)
 	return (*color);
 }
 
-static int	put_txr_wall(t_texture *txr, float percent_y, float x_ray, float y_ray)
+static int	put_txr_wall(t_texture *txr, float percent_y, float x_ray, float y_ray, float angle)
 {
-	y_ray = (y_ray - (int)y_ray);
+	angle = angle + PI / 6;
 	x_ray = (x_ray - (int)x_ray);
-	if (y_ray >= 1 - 1 / 64.0)
-		return(put_img_wall(&txr->north, percent_y, x_ray));
-	else if (x_ray <= 0 + 1 / 64.0)
+	y_ray = (y_ray - (int)y_ray);
+
+	if (x_ray <= 0 + 1 / 64.0 && (angle <= 2 * PI / 3 || angle >= 4 * PI / 3))
 		return(put_img_wall(&txr->east, percent_y, y_ray));
-	else if (y_ray <= 0 + 1 / 64.0)
+
+	else if (y_ray >= 1 - 1 / 64.0 && (angle <= 7 * PI / 6 || angle >= 11 * PI / 6))
+		return(put_img_wall(&txr->north, percent_y, x_ray));
+
+	else if (y_ray <= 0 + 1 / 64.0 && (angle >= 5 * PI / 6 || angle <=  PI / 6))
 		return(put_img_wall(&txr->south, percent_y, x_ray));
-	else if (x_ray >= 1 - 1 / 64.0)
+
+	else if (x_ray >= 1 - 1 / 64.0 && angle >= PI / 3 && angle <= 5 * PI / 3)
 		return(put_img_wall(&txr->west, percent_y, y_ray));
+
 	return (0);
 }
 
@@ -58,13 +64,12 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 	distance = sqrt(pow(game->player.x - x_ray, 2) + pow(game->player.y - y_ray, 2)) * cos(game->player.angle - angle);
 	wall_height = 1.6 * HEIGHT / distance;
 	start = HEIGHT / 2 - wall_height / 2;
-	printf("");
 	j = 0;
 	while (j < start)
 		put_pixel(&game->img_data, game->texture.ceiling.color_code, *i, j++);
 	while (j < start + wall_height)
 	{
-		put_pixel(&game->img_data, put_txr_wall(&game->texture, (j - start) / wall_height, x_ray, y_ray), *i, j);
+		put_pixel(&game->img_data, put_txr_wall(&game->texture, (j - start) / wall_height, x_ray, y_ray, angle), *i, j);
 		j++;
 	}
 	while (j < HEIGHT)
