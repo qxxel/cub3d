@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:02:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 23:28:10 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:06:17 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 int	update_img(t_game *param)
 {
 	actions(param);
-	clear_image(&param->img_data);
-	display_square(&param->img_data, 20, param->player.x * 64, param->player.y * 64, 0x008000);
-	display_map(param);
-	display_rays(param);
 	if (!param->mouse.showed\
 		&& (param->mouse.past_x > WIDTH * 0.8 || param->mouse.past_x < WIDTH * 0.2 ||\
 		param->mouse.past_y > HEIGHT * 0.8 || param->mouse.past_y < HEIGHT * 0.2))
@@ -28,8 +24,20 @@ int	update_img(t_game *param)
 		param->mouse.past_y = HEIGHT / 2;
 		mlx_mouse_move(param->mlx, param->win, WIDTH / 2, HEIGHT / 2);
 	}
-	mlx_put_image_to_window(param->mlx, param->win,
-		param->img, 0, 0);
+	// display_square(&param->img_data, 20, param->player.x * 64, param->player.y * 64, 0x008000);
+	// display_map(param);
+	if (param->player.past_x != param->player.x \
+		|| param->player.past_y != param->player.y \
+		|| param->player.past_angle != param->player.angle)
+	{
+		dprintf(2, "\n%f - %f\n", param->player.x, param->player.y);
+		clear_image(&param->img_data);
+		display_rays(param);
+		mlx_put_image_to_window(param->mlx, param->win, param->img, 0, 0);
+		param->player.past_x = param->player.x;
+		param->player.past_y = param->player.y;
+		param->player.past_angle = param->player.angle;
+	}
 	return (0);
 }
 

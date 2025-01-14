@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/14 03:51:44 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:52:09 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,13 @@ typedef struct	s_player
 {
 	float	x;
 	float	y;
+	float	new_x;
+	float	new_y;
 	float	angle;
+	float	past_x;
+	float	past_y;
+	float	past_angle;
+	bool	moved;
 	char	spawn;
 }	t_player;
 
