@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:19:13 by mreynaud          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2025/01/14 13:25:40 by agerbaud         ###   ########.fr        #
-=======
-#    Updated: 2025/01/15 02:37:27 by mreynaud         ###   ########.fr        #
->>>>>>> refs/remotes/origin/main
+#    Updated: 2025/01/15 14:23:09 by agerbaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
