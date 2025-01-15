@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
+#    By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:19:13 by mreynaud          #+#    #+#              #
-#    Updated: 2025/01/13 20:25:41 by agerbaud         ###   ########.fr        #
+#    Updated: 2025/01/15 02:37:27 by mreynaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ MLX				= $(DIR_MLX)libmlx.a
 LIB 			= $(LIBFT) $(MLX)
 
 WFLAGS			= -Wall -Werror -Wextra
+DBGFLAGS		= -g3
 IFLAGS			= -I $(DIR_INC) -I $(DIR_INC_LIBFT) -I $(DIR_INC_MLX)
 DEPFLAGS		= -MMD -MP
 CFLAGS			= $(WFLAGS) $(DEPFLAGS) $(IFLAGS)
@@ -61,6 +62,16 @@ DEP		= $(OBJ:.o=.d)
 .DEFAULT_GOAL	:= all
 .PHONY	: all
 all		: $(NAME)
+
+# -------------------------------     all     ------------------------------- #
+.PHONY	: bonus
+bonus	: $(NAME)
+
+# -------------------------------     all     ------------------------------- #
+debug	: $(OBJ) $(LIB)
+	@$(MSG_OBJECTS)
+	$(CC) $(LFLAGS) -o $(NAME) $(OBJ) $(LIB) $(DBGFLAGS)
+	@$(MSG_RULE)
 
 # -------------------------------    cub3d    ------------------------------- #
 $(NAME)	: $(OBJ) $(LIB)
