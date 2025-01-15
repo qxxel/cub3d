@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:02:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/14 11:06:17 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/15 02:29:07 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ int	update_img(t_game *param)
 		param->mouse.past_y = HEIGHT / 2;
 		mlx_mouse_move(param->mlx, param->win, WIDTH / 2, HEIGHT / 2);
 	}
-	// display_square(&param->img_data, 20, param->player.x * 64, param->player.y * 64, 0x008000);
-	// display_map(param);
 	if (param->player.past_x != param->player.x \
 		|| param->player.past_y != param->player.y \
 		|| param->player.past_angle != param->player.angle)
 	{
-		dprintf(2, "\n%f - %f\n", param->player.x, param->player.y);
+		// dprintf(2, "\n%f - %f\n", param->player.x, param->player.y);
 		clear_image(&param->img_data);
 		display_rays(param);
 		mlx_put_image_to_window(param->mlx, param->win, param->img, 0, 0);
@@ -38,6 +36,8 @@ int	update_img(t_game *param)
 		param->player.past_y = param->player.y;
 		param->player.past_angle = param->player.angle;
 	}
+	display_map(param);
+	display_square(&param->img_data, 8, param->player.x * 8 - 4, param->player.y * 8 - 4, 0x0000FF);
 	return (0);
 }
 

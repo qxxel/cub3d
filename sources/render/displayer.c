@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   displayer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/14 11:02:22 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/15 02:24:22 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,59 @@ static int	put_img_wall(t_image *img_txr, float percent_y, float percent_x)
 	return (*color);
 }
 
-static int	put_txr_wall(t_texture *txr, float percent_y, float x_ray, float y_ray, float angle)
+static int	put_txr_wall(t_game *game, float percent_y, float x_ray, float y_ray) // , float angle)
 {
-	angle = angle + PI / 6;
-	x_ray = (x_ray - (int)x_ray);
-	y_ray = (y_ray - (int)y_ray);
+	t_texture *txr;
 
-	if (x_ray <= 0 + 1 / 64.0 && (angle <= 2 * PI / 3 || angle >= 4 * PI / 3))
-		return(put_img_wall(&txr->east, percent_y, y_ray));
+	txr = &game->texture;
 
-	else if (y_ray >= 1 - 1 / 64.0 && (angle <= 7 * PI / 6 || angle >= 11 * PI / 6))
-		return(put_img_wall(&txr->north, percent_y, x_ray));
+	// while (angle < (float)0)
+	// 	angle += 2 * PI;
+	// while (angle > (float)(2 * PI))
+	// 	angle -= 2 * PI;
+	// x_ray -= (int)x_ray;
+	// y_ray -= (int)y_ray;
 
-	else if (y_ray <= 0 + 1 / 64.0 && (angle >= 5 * PI / 6 || angle <=  PI / 6))
-		return(put_img_wall(&txr->south, percent_y, x_ray));
+	if (game->map[(int)y_ray] && (game->map[(int)y_ray][(int)x_ray + 1] == '0'|| \
+		(x_ray - 1 > 0 && game->map[(int)y_ray][(int)x_ray - 1] == '0')))
+	{
+		x_ray -= (int)x_ray;
+		y_ray -= (int)y_ray;
+		// printf("test1");
+		if ((x_ray <= 1 / 64.0))
+			return(put_img_wall(&txr->east, percent_y, y_ray)); // return (0xFF0000); // red
+		else if ((x_ray >= 1 - 1 / 64.0))
+			return(put_img_wall(&txr->west, percent_y, y_ray)); // return (0xFF00FF); // pink
+	}
+	else if ((game->map[(int)y_ray + 1] && game->map[(int)y_ray + 1][(int)x_ray] == '0') || \
+		((int)y_ray - 1 > 0 && game->map[(int)y_ray - 1] && game->map[(int)y_ray - 1][(int)x_ray] == '0'))
+	{
+		x_ray -= (int)x_ray;
+		y_ray -= (int)y_ray;
+		// printf("%f %f\n", x_ray, y_ray);
+		if ((y_ray >= 1 - 1 / 64.0))
+			return(put_img_wall(&txr->north, percent_y, x_ray)); // return (0xFFFF00); // yellow
+		else if ((y_ray < 1 / 64.0))
+			return(put_img_wall(&txr->south, percent_y, x_ray)); // return (0x00FF00); // green
+	}
+	if ((x_ray <= 1 / 64.0))
+		return(put_img_wall(&txr->east, percent_y, y_ray)); // return (0xFF0000); // red
+	else if ((x_ray >= 1 - 1 / 64.0))
+		return(put_img_wall(&txr->west, percent_y, y_ray)); // return (0xFF00FF); // pink
+	else if ((y_ray >= 1 - 1 / 64.0))
+		return(put_img_wall(&txr->north, percent_y, x_ray)); // return (0xFFFF00); // yellow
+	else if ((y_ray < 1 / 64.0))
+		return(put_img_wall(&txr->south, percent_y, x_ray)); // return (0x00FF00); // green
 
-	else if (x_ray >= 1 - 1 / 64.0 && angle >= PI / 3 && angle <= 5 * PI / 3)
-		return(put_img_wall(&txr->west, percent_y, y_ray));
-
-	return (0);
+	// if (x_ray <= 1 / 64.0 && (angle < PI / 2 || angle > 3 * PI / 2))
+	// 	return(put_img_wall(&txr->east, percent_y, y_ray));
+	// if (y_ray >= 1 - 1 / 64.0 && (angle < PI && angle > 0))
+	// 	return(put_img_wall(&txr->north, percent_y, x_ray));
+	// if (y_ray <= 1 / 64.0 && (angle > PI && angle < 2 * PI))
+	// 	return(put_img_wall(&txr->south, percent_y, x_ray));
+	// if (x_ray >= 1 - 1 / 64.0 && angle > PI / 2 && angle < 3 * PI / 2)
+	// 	return(put_img_wall(&txr->west, percent_y, y_ray));
+	return (255);
 }
 
 static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float angle)
@@ -69,7 +103,7 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 		put_pixel(&game->img_data, game->texture.ceiling.color_code, *i, j++);
 	while (j < start + wall_height)
 	{
-		put_pixel(&game->img_data, put_txr_wall(&game->texture, (j - start) / wall_height, x_ray, y_ray, angle), *i, j);
+		put_pixel(&game->img_data, put_txr_wall(game , (j - start) / wall_height, x_ray, y_ray), *i, j);
 		j++;
 	}
 	while (j < HEIGHT)
@@ -92,6 +126,8 @@ static void	send_ray(t_game *game, float angle, int	*i)
 	{
 		// put_pixel(&game->img_data, 0xFF0000, x_ray * 64, y_ray * 64);
 		x_ray += angle_cos;
+		if (touch(game, x_ray, y_ray))
+		 	break;
 		y_ray += angle_sin;
 	}
 	display_wall(game, x_ray, y_ray, i, angle);
@@ -144,7 +180,9 @@ void	display_map(t_game *game)
 		while (game->map[y][x])
 		{
 			if (game->map[y][x] == '1')
-				display_square(&game->img_data, 64, x * 64, y * 64, 0x0000FF);
+				display_square(&game->img_data, 8, x * 8, y * 8, 0x000000);
+			else if (game->map[y][x] != ' ')
+				display_square(&game->img_data, 8, x * 8, y * 8, 0xFFFFFF);
 			x++;
 		}
 		y++;
