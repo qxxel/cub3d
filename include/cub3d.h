@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/14 10:52:09 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:17:20 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <errno.h>
 # include <stdio.h>
 # include <stdbool.h>
+
+# define BONUS	0
 
 # define PI		3.14159265358979323846
 

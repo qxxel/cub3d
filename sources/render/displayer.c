@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/14 11:02:22 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:45:48 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	send_ray(t_game *game, float angle, int	*i)
 	angle_sin = -1 * (sin(angle) / 64);
 	x_ray = game->player.x;
 	y_ray = game->player.y;
-	// (void)i;
+	(void)i;
 	while (!touch(game, x_ray, y_ray))
 	{
 		// put_pixel(&game->img_data, 0xFF0000, x_ray * 64, y_ray * 64);

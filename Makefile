@@ -6,7 +6,7 @@
 #    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:19:13 by mreynaud          #+#    #+#              #
-#    Updated: 2025/01/13 20:25:41 by agerbaud         ###   ########.fr        #
+#    Updated: 2025/01/14 13:25:40 by agerbaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ WFLAGS			= -Wall -Werror -Wextra
 IFLAGS			= -I $(DIR_INC) -I $(DIR_INC_LIBFT) -I $(DIR_INC_MLX)
 DEPFLAGS		= -MMD -MP
 CFLAGS			= $(WFLAGS) $(DEPFLAGS) $(IFLAGS)
+BONUSFLAGS		= -D BONUS=1
 LFLAGS			= -lXext -lX11 -lm -lXfixes
 
 CC				= cc
@@ -66,6 +67,12 @@ all		: $(NAME)
 $(NAME)	: $(OBJ) $(LIB)
 	@$(MSG_OBJECTS)
 	$(CC) $(LFLAGS) -o $(NAME) $(OBJ) $(LIB)
+	@$(MSG_RULE)
+
+# -------------------------------    bonus    ------------------------------- #
+bonus	: $(OBJ) $(LIB)
+	@$(MSG_OBJECTS)
+	$(CC) $(LFLAGS) $(BONUSFLAGS) -o $(NAME) $(OBJ) $(LIB)
 	@$(MSG_RULE)
 
 # -------------------------------    object    ------------------------------- #
