@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:02:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/15 14:22:05 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:07:53 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,19 @@
 int	update_img(t_game *param)
 {
 	actions(param);
-	if (!param->mouse.showed\
+	if (!param->mouse.showed && param->mouse.moved\
 		&& (param->mouse.past_x > WIDTH * 0.8 || param->mouse.past_x < WIDTH * 0.2 ||\
 		param->mouse.past_y > HEIGHT * 0.8 || param->mouse.past_y < HEIGHT * 0.2))
 	{
+		mlx_mouse_move(param->mlx, param->win, WIDTH / 2, HEIGHT / 2);
 		param->mouse.moved = false;
 		param->mouse.past_x = WIDTH / 2;
 		param->mouse.past_y = HEIGHT / 2;
-		mlx_mouse_move(param->mlx, param->win, WIDTH / 2, HEIGHT / 2);
 	}
 	if (param->player.past_x != param->player.x \
 		|| param->player.past_y != param->player.y \
 		|| param->player.past_angle != param->player.angle)
 	{
-		// dprintf(2, "\n%f - %f\n", param->player.x, param->player.y);
 		clear_image(&param->img_data);
 		display_rays(param);
 		mlx_put_image_to_window(param->mlx, param->win, param->img, 0, 0);
