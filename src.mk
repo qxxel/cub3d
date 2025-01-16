@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    src.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:27:43 by mreynaud          #+#    #+#              #
-#    Updated: 2025/01/13 17:34:07 by mreynaud         ###   ########.fr        #
+#    Updated: 2025/01/16 11:43:53 by agerbaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,13 @@ SRCS =	sources/cub3d.c						\
 		sources/render/hooks.c				\
 		sources/render/minimap.c			\
 		sources/render/texture.c			\
+		sources/render/update_mouse.c		\
 		sources/utils/check_line_exist.c	\
 		sources/utils/clear_image.c			\
 		sources/utils/count_lines.c			\
 		sources/utils/err.c					\
 		sources/utils/find_color_code.c		\
+		sources/utils/fix_angle.c			\
 		sources/utils/free_tab.c			\
 		sources/utils/ft_bzero_int.c		\
 		sources/utils/init_variables.c		\

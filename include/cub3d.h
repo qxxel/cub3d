@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/15 14:22:31 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:43:40 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 
 # define PI		3.14159265358979323846
 
-# define WIDTH	1280
-# define HEIGHT	720
+# define WIDTH			1280
+# define HEIGHT			720
+# define HALF_WIDTH		WIDTH / 2
+# define HALF_HEIGHT	HEIGHT / 2
 
 # define KEY_W				119
 # define KEY_A				97
@@ -53,17 +55,17 @@
 # define SPEED			0.1
 # define ANGLE_SPEED	0.05
 
-typedef struct	s_countdef
+typedef struct s_countdef
 {
-	int	NO;
-	int	SO;
-	int	WE;
-	int	EA;
-	int	F;
-	int	C;
+	int	no;
+	int	so;
+	int	we;
+	int	ea;
+	int	f;
+	int	c;
 }	t_countdef;
 
-typedef struct	s_color
+typedef struct s_color
 {
 	int	r;
 	int	g;
@@ -79,7 +81,7 @@ typedef struct s_data
 	int			endian;
 }	t_data;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	char	*path;
 	void	*img;
@@ -88,7 +90,7 @@ typedef struct	s_image
 	int		height;
 }	t_image;
 
-typedef struct	s_key
+typedef struct s_key
 {
 	bool	w;
 	bool	s;
@@ -98,17 +100,17 @@ typedef struct	s_key
 	bool	right;
 }	t_key;
 
-typedef struct	s_texture
+typedef struct s_texture
 {
-	t_image north;
-	t_image south;
+	t_image	north;
+	t_image	south;
 	t_image	west;
 	t_image	east;
 	t_color	floor;
 	t_color	ceiling;
 }	t_texture;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	float	x;
 	float	y;
@@ -122,7 +124,7 @@ typedef struct	s_player
 	char	spawn;
 }	t_player;
 
-typedef struct	s_mouse
+typedef struct s_mouse
 {
 	int		past_x;
 	int		past_y;
@@ -130,7 +132,7 @@ typedef struct	s_mouse
 	bool	showed;
 }	t_mouse;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	t_texture	texture;
 	t_key		key;
@@ -167,6 +169,7 @@ int		keyrelease(int keycode, t_game *param);
 bool	init_minimap(t_game *game);
 bool	init_texture(t_game *game, t_texture *txr);
 int		motionnotify(int x, int y, t_game *param);
+void	update_mouse(t_game *game);
 
 //	Utils
 bool	check_line_exist(char **map, int j);
@@ -174,8 +177,10 @@ void	clear_image(t_data *data);
 int		count_lines(char *file);
 bool	err(char *str);
 int		find_color_code(int r, int g, int b);
+void	fix_angle(t_game *game);
 void	free_tab(char **map);
 void	*ft_bzero_int(int *s, size_t n);
+void	init_spawn(t_game *game);
 void	init_variables(t_game *game);
 bool	is_open(char c);
 char	**put_in_table(char	*file);

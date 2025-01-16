@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:29:51 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/16 10:48:06 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:44:49 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	keyrelease(int keycode, t_game *param)
 	return (0);
 }
 
-int motionnotify(int x, int y, t_game *param)
+int	motionnotify(int x, int y, t_game *param)
 {
-	if (param->mouse.moved)	
+	if (param->mouse.moved)
 		param->player.angle -= (x - param->mouse.past_x) * 0.0008;
 	param->mouse.past_x = x;
 	param->mouse.past_y = y;

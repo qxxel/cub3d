@@ -6,11 +6,23 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:02:25 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/14 10:52:17 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:27:13 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	init_spawn(t_game *game)
+{
+	if (game->player.spawn == 'E')
+		game->player.angle = 0;
+	if (game->player.spawn == 'N')
+		game->player.angle = PI / 2;
+	if (game->player.spawn == 'W')
+		game->player.angle = PI;
+	if (game->player.spawn == 'S')
+		game->player.angle = (3 * PI) / 2;
+}
 
 static void	init_textures_variables(t_texture *texture)
 {
@@ -44,8 +56,8 @@ static void	init_game_variables(t_game *game)
 	game->player.past_angle = 0;
 	game->player.moved = false;
 	game->player.spawn = 0;
-	game->mouse.past_x = WIDTH / 2;
-	game->mouse.past_y = HEIGHT / 2;
+	game->mouse.past_x = HALF_WIDTH;
+	game->mouse.past_y = HALF_HEIGHT;
 	game->mouse.moved = false;
 	game->mouse.showed = false;
 	game->map = NULL;
