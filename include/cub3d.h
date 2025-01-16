@@ -6,13 +6,14 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/16 11:43:40 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:25:32 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+/* ============================ Includes ============================ */
 # include "mlx.h"
 # include "libft.h"
 # include <math.h>
@@ -20,15 +21,18 @@
 # include <errno.h>
 # include <stdio.h>
 # include <stdbool.h>
+/* ================================================================== */
 
-# define BONUS	0
-
+/* ============================ Defines ============================ */
 # define PI		3.14159265358979323846
 
 # define WIDTH			1280
 # define HEIGHT			720
 # define HALF_WIDTH		WIDTH / 2
 # define HALF_HEIGHT	HEIGHT / 2
+
+# define SPEED			0.1
+# define ANGLE_SPEED	0.05
 
 # define KEY_W				119
 # define KEY_A				97
@@ -48,13 +52,9 @@
 # define DESTROYNOTIFYMASK	17
 # define MOTIONNOTIFY		06
 # define MOTIONNOTIFYMASK	06
+/* ================================================================= */
 
-# define WALL_HEIGHT	720
-# define WALL_DISTANCE	360.138862107
-
-# define SPEED			0.1
-# define ANGLE_SPEED	0.05
-
+/* ============================ Structures ============================ */
 typedef struct s_countdef
 {
 	int	no;
@@ -146,8 +146,9 @@ typedef struct s_game
 	void		*minimap_img;
 	t_data		minimap_data;
 }	t_game;
+/* ==================================================================== */
 
-//	Parsing
+/* ============================ Parsing ============================ */
 bool	get_color(char **cub, char *part, t_color *color);
 bool	get_image(char **cub, char *direction, t_image *path);
 char	**get_map(char **cub);
@@ -155,8 +156,9 @@ bool	get_textures(char **cub, t_texture *texture);
 bool	parse_args(int argc, char **argv, t_game *game);
 bool	parse_file(char **cub);
 bool	parse_map(char **map, t_game *game);
+/* ================================================================= */
 
-//	Raycasting
+/* ============================ Raycasting ============================ */
 int		actions(t_game *param);
 int		close_window(t_game *param);
 int		destroyer(t_game *game);
@@ -170,8 +172,9 @@ bool	init_minimap(t_game *game);
 bool	init_texture(t_game *game, t_texture *txr);
 int		motionnotify(int x, int y, t_game *param);
 void	update_mouse(t_game *game);
+/* ==================================================================== */
 
-//	Utils
+/* ============================ Utils ============================ */
 bool	check_line_exist(char **map, int j);
 void	clear_image(t_data *data);
 int		count_lines(char *file);
@@ -185,5 +188,6 @@ void	init_variables(t_game *game);
 bool	is_open(char c);
 char	**put_in_table(char	*file);
 void	put_pixel(t_data *data, int color, int x, int y);
+/* =============================================================== */
 
 #endif
