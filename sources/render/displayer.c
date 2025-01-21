@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 17:09:56 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:11:03 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float a
 	while (j < start + wall_height)
 	{
 		put_pixel(&game->img_data, put_txr_wall(game, (j - start) \
-			/ wall_height, x_ray, y_ray), *i, j);
+			/ wall_height, x_ray, y_ray, angle), *i, j);
 		j++;
 	}
 	while (j < HEIGHT)
