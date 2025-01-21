@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:10:34 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 16:45:29 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:07:46 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,12 @@ bool	parse_args(int argc, char **argv, t_game *game)
 		return (true);
 	if (parse_file(cub) || get_textures(cub, &game->texture))
 	{
-		free(cub);
+		free_tab(cub);
 		return (true);
 	}
 	game->map = get_map(cub);
 	free_tab(cub);
 	if (parse_map(game->map, game))
-	{
-		free(game->map);
 		return (true);
-	}
 	return (false);
 }
