@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:43 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 15:43:11 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:50:42 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool	check_char(t_game *game, int *count_spawn, int i, int j)
 		&& !(game->map[i][j] == 'W') && !(game->map[i][j] == 'E') \
 		&& !(game->map[i][j] == '1') && !(game->map[i][j] == '0') \
 		&& !(game->map[i][j] == ' '))
-		return (err("cub3d: the map has unknown charachter\n"));
+		return (err("cub3d: the map has unknown character\n"));
 	if (is_open(game->map[i][j]) && check_sides(game->map, i, j))
 		return (err("cub3d: the map is not closed\n"));
 	return (false);
