@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 22:41:50 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/16 11:33:56 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:42:59 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	find_define(char **cub, char *def, int i)
 	int	j;
 
 	j = 0;
-	while (cub[i][j] == ' ')
+	while (cub[i][j] == ' ' || cub[i][j] == '\t')
 		j++;
 	return (ft_strncmp(cub[i] + j, def, ft_strlen(def)));
 }

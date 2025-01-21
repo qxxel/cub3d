@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:19:03 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/09 14:26:07 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:42:48 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static int	find_map(char **cub)
 		|| !all_good[3] || !all_good[4] || !all_good[5]))
 	{
 		j = 0;
-		while (cub[i][j] == ' ')
+		while (cub[i][j] == ' ' || cub[i][j] == '\t')
 			j++;
 		check_defines(cub, all_good, j, i);
 		i++;

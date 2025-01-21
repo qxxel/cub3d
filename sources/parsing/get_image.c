@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 00:45:30 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 18:00:12 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:42:41 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ bool	get_image(char **cub, char *direction, t_image *image)
 	while (cub[i])
 	{
 		j = 0;
-		while (cub[i][j] == ' ')
+		while (cub[i][j] == ' ' || cub[i][j] == '\t')
 			j++;
 		result = ft_strncmp(cub[i] + j, direction, 3);
 		if (!result)
 		{
 			j += 3;
-			while (cub[i][j] == ' ')
+			while (cub[i][j] == ' ' || cub[i][j] == '\t')
 				j++;
 			image->path = extract_path(cub[i] + j);
 			return (parse_image(image->path));
