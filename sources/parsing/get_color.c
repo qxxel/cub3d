@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 15:42:28 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:57:41 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static bool	parse_rgb(char **rgb, char *part)
 		j = 0;
 		if (rgb[i][j] && rgb[i][j] == '\0')
 		{
-			ft_dprintf(2, "cub3d: the rgb code of %s is empty\n", part);
+			ft_dprintf(2, MSG_ERR_RGB_EMPTY, part);
 			return (true);
 		}
 		if (check_rgb(rgb, part, i, j))
@@ -58,7 +58,7 @@ static bool	parse_rgb(char **rgb, char *part)
 	}
 	if (i != 3)
 	{
-		ft_dprintf(2, "cub3d: the rgb code of %s is empty\n", part);
+		ft_dprintf(2, MSG_ERR_RGB_EMPTY, part);
 		return (true);
 	}
 	return (false);
@@ -68,20 +68,17 @@ static bool	check_color(t_color *color, char *part)
 {
 	if (color->r < 0 || 255 < color->r)
 	{
-		ft_dprintf(2, "cub3d: the rgb code of %s is not up to standard\n", \
-			part);
+		ft_dprintf(2, MSG_ERR_RGB_STANDARD, part);
 		return (true);
 	}
 	if (color->g < 0 || 255 < color->g)
 	{
-		ft_dprintf(2, "cub3d: the rgb code of %s is not up to standard\n", \
-			part);
+		ft_dprintf(2, MSG_ERR_RGB_STANDARD, part);
 		return (true);
 	}
 	if (color->b < 0 || 255 < color->b)
 	{
-		ft_dprintf(2, "cub3d: the rgb code of %s is not up to standard\n", \
-			part);
+		ft_dprintf(2, MSG_ERR_RGB_STANDARD, part);
 		return (true);
 	}
 	return (false);
@@ -109,8 +106,7 @@ static char	*find_color(char **cub, char *part)
 		}
 		i++;
 	}
-	ft_dprintf(2, "cub3d: there is no %s \
-		texture in the file put as argument\n", part);
+	ft_dprintf(2, MSG_ERR_NO_COLOR, part);
 	return (NULL);
 }
 
@@ -120,7 +116,7 @@ bool	get_color(char **cub, char *part, t_color *color)
 
 	rgb = ft_split(find_color(cub, part), ',');
 	if (!rgb)
-		return (err("cub3d: error while getting colors\n"));
+		return (err(MSG_ERR_GETTING_COLOR));
 	if (parse_rgb(rgb, part))
 		return (true);
 	color->r = ft_atoi(rgb[0]);
