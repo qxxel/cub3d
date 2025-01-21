@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 22:41:50 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 15:42:59 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:47:14 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ bool	parse_file(char **cub)
 	check_define(cub, &countdef);
 	if (countdef.no > 1 || countdef.so > 1 || countdef.we > 1 \
 		|| countdef.ea > 1 || countdef.f > 1 || countdef.c > 1)
-		return (err("cub3d: multiple definition of textures\n"));
+		return (err(MSG_ERR_MULTI_TEXTURES));
 	if (!countdef.no || !countdef.so || !countdef.we \
 		|| !countdef.ea || !countdef.f || !countdef.c)
-		return (err("cub3d: missing definition of textures\n"));
+		return (err(MSG_ERR_MISSING_TEXTURES));
 	if (check_define_first(cub))
-		return (err("cub3d: defines aren't before the map\n"));
+		return (err(MSG_ERR_POS_TEXTURES));
 	return (false);
 }

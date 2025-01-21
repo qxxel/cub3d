@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:43 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 15:50:42 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:02:27 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ bool	check_char(t_game *game, int *count_spawn, int i, int j)
 		&& !(game->map[i][j] == 'W') && !(game->map[i][j] == 'E') \
 		&& !(game->map[i][j] == '1') && !(game->map[i][j] == '0') \
 		&& !(game->map[i][j] == ' '))
-		return (err("cub3d: the map has unknown character\n"));
+		return (err(MSG_ERR_UNKNOWN_CHAR));
 	if (is_open(game->map[i][j]) && check_sides(game->map, i, j))
-		return (err("cub3d: the map is not closed\n"));
+		return (err(MSG_ERR_OPEN_MAP));
 	return (false);
 }
 
@@ -98,9 +98,9 @@ bool	parse_map(char **map, t_game *game)
 	i = 0;
 	count_spawn = 0;
 	if (!map || !map[0])
-		return (err("cub3d: there is no map\n"));
+		return (err(MSG_ERR_NO_MAP));
 	if (check_empty_lines(map))
-		return (err("cub3d: the map isn't in one part\n"));
+		return (err(MSG_ERR_PART_MAP));
 	while (map[i])
 	{
 		j = 0;
@@ -113,6 +113,6 @@ bool	parse_map(char **map, t_game *game)
 		i++;
 	}
 	if (count_spawn != 1)
-		return (err("cub3d: the map hasn't the right number of spawnpoint\n"));
+		return (err(MSG_ERR_NB_SPAWN));
 	return (false);
 }

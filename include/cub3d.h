@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/16 13:25:32 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:03:53 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@
 
 # define SPEED			0.1
 # define ANGLE_SPEED	0.05
+
+# define MSG_ERR_USAGE				"cub3d: usage: ./cub3d [file.cub]\n"
+# define MSG_ERR_PERM				"cub3d: open: permission denied\n"
+# define MSG_ERR_MULTI_TEXTURES		"cub3d: multiple definition of textures\n"
+# define MSG_ERR_MISSING_TEXTURES	"cub3d: missing definition of textures\n"
+# define MSG_ERR_POS_TEXTURES		"cub3d: defines aren't before the map\n"
+# define MSG_ERR_PATH_XPM			"cub3d: textures must be .xpm\n"
+# define MSG_ERR_PATH_REAL			"cub3d: the texture path must be real\n"
+# define MSG_ERR_PATH_DIR			"cub3d: textures cannot be folders\n"
+# define MSG_ERR_GETTING_COLOR		"cub3d: error while getting colors\n"
+# define MSG_ERR_RGB_EMPTY			"cub3d: the rgb code of %sis empty\n"
+# define MSG_ERR_RGB_STANDARD		"cub3d: the rgb code of %sis not up to standard\n"
+# define MSG_ERR_NO_COLOR			"cub3d: there is no %stexture in the file put as argument\n"
+# define MSG_ERR_NO_MAP				"cub3d: there is no map\n"
+# define MSG_ERR_PART_MAP			"cub3d: the map isn't in one part\n"
+# define MSG_ERR_UNKNOWN_CHAR		"cub3d: the map has unknown character\n"
+# define MSG_ERR_OPEN_MAP			"cub3d: the map is not closed\n"
+# define MSG_ERR_NB_SPAWN			"cub3d: the map hasn't the right number of spawnpoint\n"
 
 # define KEY_W				119
 # define KEY_A				97

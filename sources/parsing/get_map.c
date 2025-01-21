@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:19:03 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 15:42:48 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:58:44 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,6 @@ static void	check_rest_empty(char **map, int *i)
 		(*i)++;
 	}
 }
-
-// static bool	check_line_exist(char **map, int j)
-// {
-// 	if (!map[j])
-// 	{
-// 		perror("cub3d");
-// 		while (j > 0)
-// 			free(map[j--]);
-// 		free(map);
-// 		return (false);
-// 	}
-// 	return (true);
-// }
 
 static char	**copy_map(char **cub, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 00:45:30 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 15:58:50 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:50:56 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 static bool	parse_image(char *path)
 {
+	int	fd;
 	int	i;
 
 	i = 0;
 	if (ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 4))
-		return (err("cub3d: textures must be .xpm\n"));
+		return (err(MSG_ERR_PATH_XPM));
 	if (path[0] == '/')
-		return (err("cub3d: the texture path must be real\n"));
+		return (err(MSG_ERR_PATH_REAL));
 	if (ft_isdir(path, O_RDONLY, 0))
-		return (err("cub3d: textures cannot be folders\n"));
+		return (err(MSG_ERR_PATH_DIR));
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("cub3d");
+		return (true);
+	}
+	close (fd);
 	return (false);
 }
 
@@ -62,7 +70,5 @@ bool	get_image(char **cub, char *direction, t_image *image)
 		}
 		i++;
 	}
-	ft_dprintf(2, "cub3d: there is no %s \
-		texture in the file put as argument\n", direction);
-	return (true);
+	return (err(MSG_ERR_MISSING_TEXTURES));
 }
