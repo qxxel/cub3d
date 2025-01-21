@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/16 11:58:00 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:10:45 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ static bool	touch(t_game *game, int x_ray, int y_ray)
 	return (false);
 }
 
-static int	put_img_wall(t_image *img_txr, float prct_y, float percent_x)
+static int	put_img_wall(t_image *img_txr, char c, float prct_y, float prct_x)
 {
 	int				x;
 	int				y;
 	int				pos;
 	unsigned int	*color;
 
-	x = percent_x * img_txr->width;
+	x = prct_x * img_txr->width;
 	y = prct_y * img_txr->height;
-	pos = (y * img_txr->img_data.size_line + x * (img_txr->img_data.bpp / 8));
+	if (c == 'n' || c == 'e')
+		pos = (y * img_txr->img_data.size_line + x * (img_txr->img_data.bpp / 8));
+	else
+		pos = ((y + 1) * img_txr->img_data.size_line - x * (img_txr->img_data.bpp / 8));
 	color = (unsigned int *)(img_txr->img_data.data + pos);
 	return (*color);
 }
@@ -52,9 +55,9 @@ static int	put_txr_wall(t_game *game, float prct_y, float x_ray, float y_ray)
 		y_ray -= (int)y_ray;
 		// printf("test1");
 		if ((x_ray <= 1 / 64.0))
-			return (put_img_wall(&txr->east, prct_y, y_ray)); // return (0xFF0000); // red
+			return (put_img_wall(&txr->east, 'e', prct_y, y_ray)); // return (0xFF0000); // red
 		else if ((x_ray >= 1 - 1 / 64.0))
-			return (put_img_wall(&txr->west, prct_y, y_ray)); // return (0xFF00FF); // pink
+			return (put_img_wall(&txr->west, 'w', prct_y, y_ray)); // return (0xFF00FF); // pink
 	}
 	else if ((game->map[(int)y_ray + 1] \
 		&& game->map[(int)y_ray + 1][(int)x_ray] == '0') \
@@ -64,18 +67,18 @@ static int	put_txr_wall(t_game *game, float prct_y, float x_ray, float y_ray)
 		x_ray -= (int)x_ray;
 		y_ray -= (int)y_ray;
 		if ((y_ray >= 1 - 1 / 64.0))
-			return (put_img_wall(&txr->north, prct_y, x_ray)); // return (0xFFFF00); // yellow
+			return (put_img_wall(&txr->north, 'n', prct_y, x_ray)); // return (0xFFFF00); // yellow
 		else if ((y_ray < 1 / 64.0))
-			return (put_img_wall(&txr->south, prct_y, x_ray)); // return (0x00FF00); // green
+			return (put_img_wall(&txr->south, 's', prct_y, x_ray)); // return (0x00FF00); // green
 	}
 	if ((x_ray <= 1 / 64.0))
-		return (put_img_wall(&txr->east, prct_y, y_ray)); // return (0xFF0000); // red
+		return (put_img_wall(&txr->east, 'e', prct_y, y_ray)); // return (0xFF0000); // red
 	else if ((x_ray >= 1 - 1 / 64.0))
-		return (put_img_wall(&txr->west, prct_y, y_ray)); // return (0xFF00FF); // pink
+		return (put_img_wall(&txr->west, 'w', prct_y, y_ray)); // return (0xFF00FF); // pink
 	else if ((y_ray >= 1 - 1 / 64.0))
-		return (put_img_wall(&txr->north, prct_y, x_ray)); // return (0xFFFF00); // yellow
+		return (put_img_wall(&txr->north, 'n', prct_y, x_ray)); // return (0xFFFF00); // yellow
 	else if ((y_ray < 1 / 64.0))
-		return (put_img_wall(&txr->south, prct_y, x_ray)); // return (0x00FF00); // green
+		return (put_img_wall(&txr->south, 's', prct_y, x_ray)); // return (0x00FF00); // green
 	// if (x_ray <= 1 / 64.0 && (angle < PI / 2 || angle > 3 * PI / 2))
 	// 	return(put_img_wall(&txr->east, prct_y, y_ray));
 	// if (y_ray >= 1 - 1 / 64.0 && (angle < PI && angle > 0))
