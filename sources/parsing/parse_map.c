@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:43 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 17:02:27 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:23:10 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static bool	check_sides(char **map, int i, int j)
 		return (true);
 	if (map[i][j + 1] && (map[i][j + 1] == ' ' || map[i][j + 1] == '\0'))
 		return (true);
-	if (map[i + 1] && map[i + 1][j] == ' ')
+	if (map[i + 1] && (map[i + 1][j] == ' ' || map[i + 1][j] == '\0'))
 		return (true);
 	return (false);
 }
