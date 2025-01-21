@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:27:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/14 16:29:53 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:41:01 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,14 @@ void	move_player(t_game *game, float angle_cos, float angle_sin, int side)
 
 int	actions(t_game *param)
 {
-	float 	angle_cos;
-	float 	angle_sin;
+	float	angle_cos;
+	float	angle_sin;
 
 	if (param->key.left)
 		param->player.angle += ANGLE_SPEED;
 	if (param->key.right)
 		param->player.angle -= ANGLE_SPEED;
-	if (param->player.angle > 2 * PI)
-		param->player.angle -= 2 * PI;
-	if (param->player.angle < 0)
-		param->player.angle += 2 * PI;
+	fix_angle(param);
 	angle_cos = cosf(param->player.angle);
 	angle_sin = sinf(param->player.angle);
 	if (param->key.w)

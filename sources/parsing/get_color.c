@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/13 17:45:17 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:42:28 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	check_rgb(char **rgb, char *part, int i, int j)
 {
-	while (rgb[i][j] == ' ')
+	while (rgb[i][j] == ' ' || rgb[i][j] == '\t')
 		j++;
 	if (rgb[i][j] == '-')
 		j++;
@@ -24,7 +24,7 @@ static bool	check_rgb(char **rgb, char *part, int i, int j)
 		{
 			if (j > 0 && ft_isnum(rgb[i][j - 1]))
 			{
-				while (rgb[i][j] == ' ')
+				while (rgb[i][j] == ' ' || rgb[i][j] == '\t')
 					j++;
 				if (rgb[i][j] == '\0')
 					return (false);
@@ -97,13 +97,13 @@ static char	*find_color(char **cub, char *part)
 	while (cub[i])
 	{
 		j = 0;
-		while (cub[i][j] == ' ')
+		while (cub[i][j] == ' ' || cub[i][j] == '\t')
 			j++;
 		result = ft_strncmp(cub[i] + j, part, 2);
 		if (!result)
 		{
 			j += 2;
-			while (cub[i][j] == ' ')
+			while (cub[i][j] == ' ' || cub[i][j] == '\t')
 				j++;
 			return (cub[i] + j);
 		}

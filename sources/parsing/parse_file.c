@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 22:41:50 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/08 17:34:14 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:42:59 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	find_define(char **cub, char *def, int i)
 	int	j;
 
 	j = 0;
-	while (cub[i][j] == ' ')
+	while (cub[i][j] == ' ' || cub[i][j] == '\t')
 		j++;
 	return (ft_strncmp(cub[i] + j, def, ft_strlen(def)));
 }
@@ -30,17 +30,17 @@ static void	check_define(char **cub, t_countdef *countdef)
 	while (cub[i])
 	{
 		if (!find_define(cub, "NO ", i))
-			countdef->NO++;
+			countdef->no++;
 		else if (!find_define(cub, "SO ", i))
-			countdef->SO++;
+			countdef->so++;
 		else if (!find_define(cub, "WE ", i))
-			countdef->WE++;
+			countdef->we++;
 		else if (!find_define(cub, "EA ", i))
-			countdef->EA++;
+			countdef->ea++;
 		else if (!find_define(cub, "F ", i))
-			countdef->F++;
+			countdef->f++;
 		else if (!find_define(cub, "C ", i))
-			countdef->C++;
+			countdef->c++;
 		i++;
 	}
 }
@@ -78,18 +78,18 @@ bool	parse_file(char **cub)
 {
 	t_countdef	countdef;
 
-	countdef.NO = 0;
-	countdef.SO = 0;
-	countdef.WE = 0;
-	countdef.EA = 0;
-	countdef.F = 0;
-	countdef.C = 0;
+	countdef.no = 0;
+	countdef.so = 0;
+	countdef.we = 0;
+	countdef.ea = 0;
+	countdef.f = 0;
+	countdef.c = 0;
 	check_define(cub, &countdef);
-	if (countdef.NO > 1 || countdef.SO > 1 || countdef.WE > 1 \
-		|| countdef.EA > 1 || countdef.F > 1 || countdef.C > 1)
+	if (countdef.no > 1 || countdef.so > 1 || countdef.we > 1 \
+		|| countdef.ea > 1 || countdef.f > 1 || countdef.c > 1)
 		return (err("cub3d: multiple definition of textures\n"));
-	if (!countdef.NO || !countdef.SO || !countdef.WE \
-		|| !countdef.EA || !countdef.F || !countdef.C)
+	if (!countdef.no || !countdef.so || !countdef.we \
+		|| !countdef.ea || !countdef.f || !countdef.c)
 		return (err("cub3d: missing definition of textures\n"));
 	if (check_define_first(cub))
 		return (err("cub3d: defines aren't before the map\n"));
