@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
+#    By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:19:13 by mreynaud          #+#    #+#              #
-#    Updated: 2025/01/15 14:23:09 by agerbaud         ###   ########.fr        #
+#    Updated: 2025/01/21 16:48:42 by mreynaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,11 +64,8 @@ DEP		= $(OBJ:.o=.d)
 .PHONY	: all
 all		: $(NAME)
 
-# -------------------------------     all     ------------------------------- #
-.PHONY	: bonus
-bonus	: $(NAME)
-
-# -------------------------------     all     ------------------------------- #
+# -------------------------------     debug     ------------------------------- #
+.PHONY	: debug
 debug	: $(OBJ) $(LIB)
 	@$(MSG_OBJECTS)
 	$(CC) $(LFLAGS) -o $(NAME) $(OBJ) $(LIB) $(DBGFLAGS)
@@ -81,6 +78,7 @@ $(NAME)	: $(OBJ) $(LIB)
 	@$(MSG_RULE)
 
 # -------------------------------    bonus    ------------------------------- #
+.PHONY	: bonus
 bonus	: $(OBJ) $(LIB)
 	@$(MSG_OBJECTS)
 	$(CC) $(LFLAGS) $(BONUSFLAGS) -o $(NAME) $(OBJ) $(LIB)
