@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 00:45:30 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 17:20:06 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:21:00 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 static bool	parse_image(char *path)
 {
 	int	fd;
-	int	i;
 
-	i = 0;
-	if (ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 4))
+	if (ft_strlen(path) < 4 || \
+		ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 4))
 		return (err(MSG_ERR_PATH_XPM));
 	if (ft_isdir(path, O_RDONLY, 0))
 		return (err(MSG_ERR_PATH_DIR));
