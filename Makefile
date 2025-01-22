@@ -6,7 +6,7 @@
 #    By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:19:13 by mreynaud          #+#    #+#              #
-#    Updated: 2025/01/21 16:48:42 by mreynaud         ###   ########.fr        #
+#    Updated: 2025/01/22 19:12:00 by mreynaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,9 @@ MLX				= $(DIR_MLX)libmlx.a
 LIB 			= $(LIBFT) $(MLX)
 
 WFLAGS			= -Wall -Werror -Wextra
-DBGFLAGS		= -g3
+DBGFLAGS		= -g3 -Og
 IFLAGS			= -I $(DIR_INC) -I $(DIR_INC_LIBFT) -I $(DIR_INC_MLX)
-DEPFLAGS		= -MMD -MP
+DEPFLAGS		= -MMD -MP #-Ofast
 CFLAGS			= $(WFLAGS) $(DEPFLAGS) $(IFLAGS)
 BONUSFLAGS		= -D BONUS=1
 LFLAGS			= -lXext -lX11 -lm -lXfixes

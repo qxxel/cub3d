@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:42:16 by mreynaud          #+#    #+#             */
-/*   Updated: 2025/01/22 16:43:05 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:29:04 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,51 +29,48 @@ static int	put_img_wall(t_image *img_txr, char c, float prct_y, float prct_x)
 	return (*color);
 }
 
-static int	put_txr_wall(t_game *game, float prct_y, float x_ray, float y_ray, float angle)
+static bool is_horizontal(char **map, int x, int y)
 {
-	t_texture	*txr;
-	int			int_x_ray;
-	int			int_y_ray;
+	if (((map[x + 1] && map[x + 1][y] == '0') || (x >= 1 && map[x - 1][y] == '0')) && \
+		(((!map[x][y + 1] || map[x][y + 1] == '1') || (y == 0 || map[x][y - 1] == '1'))))
+		return (true);
+	return (false);
+}
 
-	txr = &game->texture;
+static float	normalize_angle(float angle)
+{
 	while (angle < (float)0)
 		angle += 2 * PI;
 	while (angle > (float)(2 * PI))
 		angle -= 2 * PI;
-	int_x_ray = (int)x_ray;
-	int_y_ray = (int)y_ray;
-	x_ray -= int_x_ray;
-	y_ray -= int_y_ray;
+	return (angle);
+}
 
-	if (((game->map[int_y_ray][int_x_ray + 1] && game->map[int_y_ray][int_x_ray + 1] == '0') || \
-		(int_x_ray - 1 > 0 && game->map[int_y_ray][int_x_ray - 1] == '0')) && \
-		!((game->map[int_y_ray + 1] && game->map[int_y_ray + 1][int_x_ray] == '0') || \
-		(int_y_ray - 1 > 0 && game->map[int_y_ray - 1] && game->map[int_y_ray - 1][int_x_ray] == '0')))
-	{
+static int	put_txr_wall(t_game *game, float prct_y, float x_ray, float y_ray, float angle)
+{
+	t_texture	*txr;
+	bool		horizontal;
 
-		if (x_ray <= 1 / 64.0 && (angle < PI / 2 || angle > 3 * PI / 2))
-			return(put_img_wall(&txr->east, 'e', prct_y, y_ray)); // return (0xFF0000); // red
-		else if (x_ray >= 1 - 1 / 64.0 && angle > PI / 2 && angle < 3 * PI / 2)
-			return(put_img_wall(&txr->west, 'w', prct_y, y_ray)); // return (0xFF00FF); // pink
-	}
-	else if (((game->map[int_y_ray + 1] && game->map[int_y_ray + 1][int_x_ray] == '0') || \
-		(int_y_ray - 1 > 0 && game->map[int_y_ray - 1] && game->map[int_y_ray - 1][int_x_ray] == '0')) && \
-		(!((game->map[int_y_ray][int_x_ray + 1] && game->map[int_y_ray][int_x_ray + 1] == '0') || \
-		(int_x_ray - 1 > 0 && game->map[int_y_ray][int_x_ray - 1] == '0'))))
+	txr = &game->texture;
+	angle = normalize_angle(angle);
+	horizontal = is_horizontal(game->map, (int)y_ray, (int)x_ray);
+	x_ray -= (int)x_ray;
+	y_ray -= (int)y_ray;
+	if (horizontal)
 	{
 		if (y_ray >= 1 - 1 / 64.0 && angle < PI && angle > 0)
-			return(put_img_wall(&txr->north, 'n', prct_y, x_ray)); // return (0xFFFF00); // yellow
+			return(put_img_wall(&txr->north, 'n', prct_y, x_ray));
 		else if (y_ray <= 1 / 64.0 && angle > PI && angle < 2 * PI)
-			return(put_img_wall(&txr->south, 's', prct_y, x_ray)); // return (0x00FF00); // green
+			return(put_img_wall(&txr->south, 's', prct_y, x_ray));
 	}
-	if (y_ray >= 1 - 1 / 64.0 && angle < PI && angle > 0)
-		return(put_img_wall(&txr->north, 'n', prct_y, x_ray)); // return (0xFFFF00); // yellow
-	else if (y_ray <= 1 / 64.0 && angle > PI && angle < 2 * PI)
-		return(put_img_wall(&txr->south, 's', prct_y, x_ray)); // return (0x00FF00); // green
-	else if (x_ray <= 1 / 64.0 && (angle < PI / 2 || angle > 3 * PI / 2))
-		return(put_img_wall(&txr->east, 'e', prct_y, y_ray)); // return (0xFF0000); // red
+	if (x_ray <= 1 / 64.0 && (angle < PI / 2 || angle > 3 * PI / 2))
+		return(put_img_wall(&txr->east, 'e', prct_y, y_ray));
 	else if (x_ray >= 1 - 1 / 64.0 && angle > PI / 2 && angle < 3 * PI / 2)
-		return(put_img_wall(&txr->west, 'w', prct_y, y_ray)); // return (0xFF00FF); // pink
+		return(put_img_wall(&txr->west, 'w', prct_y, y_ray));
+	else if (y_ray >= 1 - 1 / 64.0 && angle < PI && angle > 0)
+		return(put_img_wall(&txr->north, 'n', prct_y, x_ray));
+	else if (y_ray <= 1 / 64.0 && angle > PI && angle < 2 * PI)
+		return(put_img_wall(&txr->south, 's', prct_y, x_ray));
 	return (0);
 }
 
