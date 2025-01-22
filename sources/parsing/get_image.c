@@ -6,7 +6,7 @@
 /*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 00:45:30 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/22 16:21:00 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:37:35 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ static bool	parse_image(char *path)
 
 static char	*extract_path(char *line)
 {
-	int		i;
 	char	*path;
 
-	i = 0;
 	path = ft_strdup(line);
 	if (!path)
 		return (NULL);
@@ -48,7 +46,6 @@ bool	get_image(char **cub, char *direction, t_image *image)
 {
 	int	i;
 	int	j;
-	int	result;
 
 	i = 0;
 	while (cub[i])
@@ -56,8 +53,7 @@ bool	get_image(char **cub, char *direction, t_image *image)
 		j = 0;
 		while (cub[i][j] == ' ' || cub[i][j] == '\t')
 			j++;
-		result = ft_strncmp(cub[i] + j, direction, 3);
-		if (!result)
+		if (!ft_strncmp(cub[i] + j, direction, 3))
 		{
 			j += 3;
 			while (cub[i][j] == ' ' || cub[i][j] == '\t')

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    src.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
+#    By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:27:43 by mreynaud          #+#    #+#              #
-#    Updated: 2025/01/16 11:43:53 by agerbaud         ###   ########.fr        #
+#    Updated: 2025/01/22 16:44:08 by mreynaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS =	sources/cub3d.c						\
 		sources/parsing/get_textures.c		\
 		sources/render/actions.c			\
 		sources/render/destroyer.c			\
+		sources/render/display_wall.c		\
 		sources/render/displayer.c			\
 		sources/render/ft_raycast.c			\
 		sources/render/hooks.c				\

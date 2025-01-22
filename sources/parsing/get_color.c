@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 16:57:41 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:39:48 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static char	*find_color(char **cub, char *part)
 {
 	int	i;
 	int	j;
-	int	result;
 
 	i = 0;
 	while (cub[i])
@@ -96,8 +95,7 @@ static char	*find_color(char **cub, char *part)
 		j = 0;
 		while (cub[i][j] == ' ' || cub[i][j] == '\t')
 			j++;
-		result = ft_strncmp(cub[i] + j, part, 2);
-		if (!result)
+		if (!ft_strncmp(cub[i] + j, part, 2))
 		{
 			j += 2;
 			while (cub[i][j] == ' ' || cub[i][j] == '\t')

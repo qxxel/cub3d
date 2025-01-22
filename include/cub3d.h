@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 17:03:53 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:43:25 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ int		destroyer(t_game *game);
 void	display_map(t_game *game);
 void	display_rays(t_game *game);
 void	display_square(t_data *data, int size, int x, int y, int color);
+void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float angle);
 void	ft_raycast(t_game *game);
 int		keypress(int keycode, t_game *param);
 int		keyrelease(int keycode, t_game *param);
