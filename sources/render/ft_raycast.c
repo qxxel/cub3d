@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:02:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/23 14:48:32 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:03:59 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ int	update_img(t_game *param)
 		clear_image(&param->img_data);
 		display_rays(param);
 		mlx_put_image_to_window(param->mlx, param->win, param->img, 0, 0);
+		mlx_put_image_to_window(param->mlx, param->win, param->map_img, 5, 5);
 		param->player.past_x = param->player.x;
 		param->player.past_y = param->player.y;
 		param->player.past_angle = param->player.angle;
 	}
-	display_map(param);
-	display_square(&param->img_data, 8, param->player.x * 8 - 4, \
-		param->player.y * 8 - 4, 0x0000FF);
+	// display_map(param);
+	// display_square(&param->img_data, 8, param->player.x * 8 - 4, \
+	// 	param->player.y * 8 - 4, 0x0000FF);
 	return (0);
 }
 
@@ -42,6 +43,7 @@ void	init_game(t_game *game)
 		&game->img_data.size_line, &game->img_data.endian);
 	init_spawn(game);
 	init_texture(game, &game->texture);
+	init_map(game);
 }
 
 void	ft_raycast(t_game *game)

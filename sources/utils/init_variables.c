@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:02:25 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/16 11:27:13 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:04:04 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ static void	init_mlx_variables(t_game *game)
 	game->img_data.bpp = 0;
 	game->img_data.size_line = 0;
 	game->img_data.endian = 0;
-	game->minimap_img = NULL;
-	game->minimap_data.data = NULL;
-	game->minimap_data.bpp = 0;
-	game->minimap_data.size_line = 0;
-	game->minimap_data.endian = 0;
+	game->map_img = NULL;
+	game->map_data.data = NULL;
+	game->map_data.bpp = 0;
+	game->map_data.size_line = 0;
+	game->map_data.endian = 0;
 }
 
 void	init_variables(t_game *game)

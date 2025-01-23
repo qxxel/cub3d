@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/23 15:03:25 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:04:04 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,8 +161,8 @@ typedef struct s_game
 	void		*win;
 	void		*img;
 	t_data		img_data;
-	void		*minimap_img;
-	t_data		minimap_data;
+	void		*map_img;
+	t_data		map_data;
 }	t_game;
 /* ==================================================================== */
 
@@ -187,13 +187,14 @@ void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float angle);
 void	ft_raycast(t_game *game);
 int		keypress(int keycode, t_game *param);
 int		keyrelease(int keycode, t_game *param);
-bool	init_minimap(t_game *game);
+void	init_map(t_game *game);
 bool	init_texture(t_game *game, t_texture *txr);
 int		motionnotify(int x, int y, t_game *param);
 void	update_mouse(t_game *game);
 /* ==================================================================== */
 
 /* ============================ Utils ============================ */
+int		bigger_line(char **tab);
 bool	check_line_exist(char **map, int j);
 bool	check_wall(t_game *game, float x_dest, float y_dest);
 void	clear_image(t_data *data);
