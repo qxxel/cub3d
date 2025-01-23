@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/23 21:04:04 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:49:08 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 # define WIDTH			1280
 # define HEIGHT			720
-# define HALF_WIDTH		WIDTH / 2
-# define HALF_HEIGHT	HEIGHT / 2
+# define HALF_WIDTH		640
+# define HALF_HEIGHT	360
 
 # define SPEED			0.1
 # define ANGLE_SPEED	0.05
@@ -163,6 +163,8 @@ typedef struct s_game
 	t_data		img_data;
 	void		*map_img;
 	t_data		map_data;
+	void		*minimap_img;
+	t_data		minimap_data;
 }	t_game;
 /* ==================================================================== */
 
@@ -184,10 +186,12 @@ void	display_map(t_game *game);
 void	display_rays(t_game *game);
 void	display_square(t_data *data, int size, int x, int y, int color);
 void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float angle);
+void	fill_minimap(t_game *game);
 void	ft_raycast(t_game *game);
 int		keypress(int keycode, t_game *param);
 int		keyrelease(int keycode, t_game *param);
 void	init_map(t_game *game);
+void	init_minimap(t_game *game);
 bool	init_texture(t_game *game, t_texture *txr);
 int		motionnotify(int x, int y, t_game *param);
 void	update_mouse(t_game *game);

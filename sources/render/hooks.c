@@ -6,13 +6,13 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:29:51 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/16 11:44:49 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:53:05 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	pause_menu(t_game *game)
+static void	pause_menu(t_game *game)
 {
 	if (!game->mouse.showed)
 	{

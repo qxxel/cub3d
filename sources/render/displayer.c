@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/23 14:48:14 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:56:18 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ static bool	touch(t_game *game, int x_ray, int y_ray)
 
 static void	send_ray(t_game *game, float angle, int *i)
 {
-	float	angle_cos;
-	float	angle_sin;
+	float	agl_cos;
+	float	agl_sin;
 	float	x_ray;
 	float	y_ray;
 
-	angle_cos = cos(angle) / 64;
-	angle_sin = -1 * (sin(angle) / 64);
+	agl_cos = cos(angle) / 64;
+	agl_sin = -1 * (sin(angle) / 64);
 	x_ray = game->player.x;
 	y_ray = game->player.y;
 	while (!touch(game, x_ray, y_ray))
 	{
-		x_ray += angle_cos;
+		x_ray += agl_cos;
 		if (touch(game, x_ray, y_ray))
 			break ;
-		y_ray += angle_sin;
+		y_ray += agl_sin;
 	}
 	display_wall(game, x_ray, y_ray, i, angle);
 }

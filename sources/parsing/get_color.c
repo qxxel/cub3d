@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/22 16:39:48 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:44:35 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ static bool	check_rgb(char **rgb, char *part, int i, int j)
 				if (rgb[i][j] == '\0')
 					return (false);
 			}
-			ft_dprintf(2, "cub3d: the rgb code of %s\
-				is not only made up of numbers\n", part);
+			ft_dprintf(2, MSG_ERR_RGB_STANDARD, part);
 			return (true);
 		}
 		j++;

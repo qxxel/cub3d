@@ -6,20 +6,11 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:03:29 by mreynaud          #+#    #+#             */
-/*   Updated: 2025/01/16 11:38:09 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:54:00 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	print_texture(t_image *img)
-{
-	printf("path = %s\n", img->path);
-	printf("[width][height] = [%d][%d]\n", img->width, img->height);
-	printf("bpp = [%d]\n", img->img_data.bpp);
-	printf("size_line = [%d]\n", img->img_data.size_line);
-	printf("endian = [%d]\n", img->img_data.endian);
-}
 
 static bool	init_img_texture(void *mlx_ptr, t_image *img)
 {

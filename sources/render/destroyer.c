@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:06:45 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/14 10:20:41 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:42:23 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	destroyer(t_game *game)
 	if (game->mlx)
 	{
 		mlx_destroy_image(game->mlx, game->img);
+		mlx_destroy_image(game->mlx, game->map_img);
+		mlx_destroy_image(game->mlx, game->minimap_img);
 		mlx_destroy_image(game->mlx, game->texture.north.img);
 		mlx_destroy_image(game->mlx, game->texture.south.img);
 		mlx_destroy_image(game->mlx, game->texture.west.img);

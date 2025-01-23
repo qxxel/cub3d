@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_wall.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:42:16 by mreynaud          #+#    #+#             */
-/*   Updated: 2025/01/22 19:29:04 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 23:00:38 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,21 @@ static int	put_img_wall(t_image *img_txr, char c, float prct_y, float prct_x)
 	x = prct_x * img_txr->width;
 	y = prct_y * img_txr->height;
 	if (c == 'n' || c == 'e')
-		pos = (y * img_txr->img_data.size_line + x * (img_txr->img_data.bpp / 8));
+		pos = (y * img_txr->img_data.size_line + x * \
+			(img_txr->img_data.bpp / 8));
 	else
-		pos = ((y + 1) * img_txr->img_data.size_line - x * (img_txr->img_data.bpp / 8));
+		pos = ((y + 1) * img_txr->img_data.size_line - x * \
+			(img_txr->img_data.bpp / 8));
 	color = (unsigned int *)(img_txr->img_data.data + pos);
 	return (*color);
 }
 
-static bool is_horizontal(char **map, int x, int y)
+static bool	is_horizontal(char **map, int x, int y)
 {
-	if (((map[x + 1] && map[x + 1][y] == '0') || (x >= 1 && map[x - 1][y] == '0')) && \
-		(((!map[x][y + 1] || map[x][y + 1] == '1') || (y == 0 || map[x][y - 1] == '1'))))
+	if (((map[x + 1] && map[x + 1][y] == '0') || \
+		(x >= 1 && map[x - 1][y] == '0')) && \
+		(((!map[x][y + 1] || map[x][y + 1] == '1') || \
+		(y == 0 || map[x][y - 1] == '1'))))
 		return (true);
 	return (false);
 }
@@ -59,18 +63,18 @@ static int	put_txr_wall(t_game *game, float prct_y, float x_ray, float y_ray, fl
 	if (horizontal)
 	{
 		if (y_ray >= 1 - 1 / 64.0 && angle < PI && angle > 0)
-			return(put_img_wall(&txr->north, 'n', prct_y, x_ray));
+			return (put_img_wall(&txr->north, 'n', prct_y, x_ray));
 		else if (y_ray <= 1 / 64.0 && angle > PI && angle < 2 * PI)
-			return(put_img_wall(&txr->south, 's', prct_y, x_ray));
+			return (put_img_wall(&txr->south, 's', prct_y, x_ray));
 	}
 	if (x_ray <= 1 / 64.0 && (angle < PI / 2 || angle > 3 * PI / 2))
-		return(put_img_wall(&txr->east, 'e', prct_y, y_ray));
+		return (put_img_wall(&txr->east, 'e', prct_y, y_ray));
 	else if (x_ray >= 1 - 1 / 64.0 && angle > PI / 2 && angle < 3 * PI / 2)
-		return(put_img_wall(&txr->west, 'w', prct_y, y_ray));
+		return (put_img_wall(&txr->west, 'w', prct_y, y_ray));
 	else if (y_ray >= 1 - 1 / 64.0 && angle < PI && angle > 0)
-		return(put_img_wall(&txr->north, 'n', prct_y, x_ray));
+		return (put_img_wall(&txr->north, 'n', prct_y, x_ray));
 	else if (y_ray <= 1 / 64.0 && angle > PI && angle < 2 * PI)
-		return(put_img_wall(&txr->south, 's', prct_y, x_ray));
+		return (put_img_wall(&txr->south, 's', prct_y, x_ray));
 	return (0);
 }
 
