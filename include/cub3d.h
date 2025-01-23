@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/23 22:49:08 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 23:40:09 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,18 @@ typedef struct s_color
 	int	b;
 	int	color_code;
 }	t_color;
+
+typedef struct s_int_coordinates
+{
+	int	x;
+	int	y;
+}	t_icoord;
+
+typedef struct s_float_coordinates
+{
+	float	x;
+	float	y;
+}	t_fcoord;
 
 typedef struct s_data
 {
@@ -182,10 +194,9 @@ bool	parse_map(char **map, t_game *game);
 int		actions(t_game *param);
 int		close_window(t_game *param);
 int		destroyer(t_game *game);
-void	display_map(t_game *game);
 void	display_rays(t_game *game);
-void	display_square(t_data *data, int size, int x, int y, int color);
-void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float angle);
+void	display_square(t_data *data, int size, t_icoord coord, int color);
+void	display_wall(t_game *game, t_fcoord ray, int *i, float angle);
 void	fill_minimap(t_game *game);
 void	ft_raycast(t_game *game);
 int		keypress(int keycode, t_game *param);

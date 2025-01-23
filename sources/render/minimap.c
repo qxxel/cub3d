@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 21:33:13 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/23 22:53:26 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 23:41:56 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,20 @@ static void	put_img_to_img(t_data *src, t_data *dst, int x_start, int y_start)
 		}
 		y++;
 	}
-	display_square(dst, 6, 77, 77, 0xFF0000);
 }
 
 void	fill_minimap(t_game *game)
 {
-	int	x_start;
-	int	y_start;
+	int			x_start;
+	int			y_start;
+	t_icoord	coord;
 
 	x_start = (game->player.x - 1) * 8;
 	y_start = (game->player.y - 1) * 8;
 	put_img_to_img(&game->map_data, &game->minimap_data, x_start, y_start);
+	coord.x = 77;
+	coord.y = 77;
+	display_square(&game->minimap_data, 6, coord, 0xFF0000);
 }
 
 void	init_minimap(t_game *game)
@@ -61,8 +64,9 @@ void	init_minimap(t_game *game)
 
 static void	fill_map(t_game *game)
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
+	t_icoord	coord;
 
 	y = 0;
 	while (game->map[y])
@@ -70,12 +74,12 @@ static void	fill_map(t_game *game)
 		x = 0;
 		while (game->map[y][x])
 		{
+			coord.x = x * 8 + 72;
+			coord.y = y * 8 + 72;
 			if (game->map[y][x] == '1' || game->map[y][x] == ' ')
-				display_square(&game->map_data, 8, x * 8 + 72, \
-					y * 8 + 72, 0x000000);
+				display_square(&game->map_data, 8, coord, 0x000000);
 			else
-				display_square(&game->map_data, 8, x * 8 + 72, \
-					y * 8 + 72, 0xCECECE);
+				display_square(&game->map_data, 8, coord, 0xCECECE);
 			x++;
 		}
 		y++;

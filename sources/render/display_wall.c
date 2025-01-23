@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:42:16 by mreynaud          #+#    #+#             */
-/*   Updated: 2025/01/23 23:00:38 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 23:20:53 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,43 +50,43 @@ static float	normalize_angle(float angle)
 	return (angle);
 }
 
-static int	put_txr_wall(t_game *game, float prct_y, float x_ray, float y_ray, float angle)
+static int	put_txr_wall(t_game *game, float prct_y, t_fcoord ray, float angle)
 {
 	t_texture	*txr;
 	bool		horizontal;
 
 	txr = &game->texture;
 	angle = normalize_angle(angle);
-	horizontal = is_horizontal(game->map, (int)y_ray, (int)x_ray);
-	x_ray -= (int)x_ray;
-	y_ray -= (int)y_ray;
+	horizontal = is_horizontal(game->map, (int)ray.y, (int)ray.x);
+	ray.x -= (int)ray.x;
+	ray.y -= (int)ray.y;
 	if (horizontal)
 	{
-		if (y_ray >= 1 - 1 / 64.0 && angle < PI && angle > 0)
-			return (put_img_wall(&txr->north, 'n', prct_y, x_ray));
-		else if (y_ray <= 1 / 64.0 && angle > PI && angle < 2 * PI)
-			return (put_img_wall(&txr->south, 's', prct_y, x_ray));
+		if (ray.y >= 1 - 1 / 64.0 && angle < PI && angle > 0)
+			return (put_img_wall(&txr->north, 'n', prct_y, ray.x));
+		else if (ray.y <= 1 / 64.0 && angle > PI && angle < 2 * PI)
+			return (put_img_wall(&txr->south, 's', prct_y, ray.x));
 	}
-	if (x_ray <= 1 / 64.0 && (angle < PI / 2 || angle > 3 * PI / 2))
-		return (put_img_wall(&txr->east, 'e', prct_y, y_ray));
-	else if (x_ray >= 1 - 1 / 64.0 && angle > PI / 2 && angle < 3 * PI / 2)
-		return (put_img_wall(&txr->west, 'w', prct_y, y_ray));
-	else if (y_ray >= 1 - 1 / 64.0 && angle < PI && angle > 0)
-		return (put_img_wall(&txr->north, 'n', prct_y, x_ray));
-	else if (y_ray <= 1 / 64.0 && angle > PI && angle < 2 * PI)
-		return (put_img_wall(&txr->south, 's', prct_y, x_ray));
+	if (ray.x <= 1 / 64.0 && (angle < PI / 2 || angle > 3 * PI / 2))
+		return (put_img_wall(&txr->east, 'e', prct_y, ray.y));
+	else if (ray.x >= 1 - 1 / 64.0 && angle > PI / 2 && angle < 3 * PI / 2)
+		return (put_img_wall(&txr->west, 'w', prct_y, ray.y));
+	else if (ray.y >= 1 - 1 / 64.0 && angle < PI && angle > 0)
+		return (put_img_wall(&txr->north, 'n', prct_y, ray.x));
+	else if (ray.y <= 1 / 64.0 && angle > PI && angle < 2 * PI)
+		return (put_img_wall(&txr->south, 's', prct_y, ray.x));
 	return (0);
 }
 
-void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float angle)
+void	display_wall(t_game *game, t_fcoord ray, int *i, float angle)
 {
 	float	distance;
 	float	wall_height;
 	int		start;
 	int		j;
 
-	distance = sqrt(pow(game->player.x - x_ray, 2) \
-		+ pow(game->player.y - y_ray, 2)) * cos(game->player.angle - angle);
+	distance = sqrt(pow(game->player.x - ray.x, 2) \
+		+ pow(game->player.y - ray.y, 2)) * cos(game->player.angle - angle);
 	wall_height = 1.6 * HEIGHT / distance;
 	start = HALF_HEIGHT - wall_height / 2;
 	j = 0;
@@ -95,7 +95,7 @@ void	display_wall(t_game *game, float x_ray, float y_ray, int *i, float angle)
 	while (j < start + wall_height)
 	{
 		put_pixel(&game->img_data, put_txr_wall(game, (j - start) \
-			/ wall_height, x_ray, y_ray, angle), *i, j);
+			/ wall_height, ray, angle), *i, j);
 		j++;
 	}
 	while (j < HEIGHT)

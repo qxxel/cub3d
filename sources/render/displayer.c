@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:34:19 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/23 22:56:18 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 23:39:37 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,22 @@ static bool	touch(t_game *game, int x_ray, int y_ray)
 
 static void	send_ray(t_game *game, float angle, int *i)
 {
-	float	agl_cos;
-	float	agl_sin;
-	float	x_ray;
-	float	y_ray;
+	float		agl_cos;
+	float		agl_sin;
+	t_fcoord	ray;
 
 	agl_cos = cos(angle) / 64;
 	agl_sin = -1 * (sin(angle) / 64);
-	x_ray = game->player.x;
-	y_ray = game->player.y;
-	while (!touch(game, x_ray, y_ray))
+	ray.x = game->player.x;
+	ray.y = game->player.y;
+	while (!touch(game, ray.x, ray.y))
 	{
-		x_ray += agl_cos;
-		if (touch(game, x_ray, y_ray))
+		ray.x += agl_cos;
+		if (touch(game, ray.x, ray.y))
 			break ;
-		y_ray += agl_sin;
+		ray.y += agl_sin;
 	}
-	display_wall(game, x_ray, y_ray, i, angle);
+	display_wall(game, ray, i, angle);
 }
 
 void	display_rays(t_game *game)
@@ -57,7 +56,7 @@ void	display_rays(t_game *game)
 	}
 }
 
-void	display_square(t_data *data, int size, int x, int y, int color)
+void	display_square(t_data *data, int size, t_icoord coord, int color)
 {
 	int	i;
 	int	j;
@@ -68,30 +67,9 @@ void	display_square(t_data *data, int size, int x, int y, int color)
 		j = 0;
 		while (j < size)
 		{
-			put_pixel(data, color, x + i, y + j);
+			put_pixel(data, color, coord.x + i, coord.y + j);
 			j++;
 		}
 		i++;
-	}
-}
-
-void	display_map(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (game->map[y])
-	{
-		x = 0;
-		while (game->map[y][x])
-		{
-			if (game->map[y][x] == '1')
-				display_square(&game->img_data, 8, x * 8, y * 8, 0x000000);
-			else if (game->map[y][x] != ' ')
-				display_square(&game->img_data, 8, x * 8, y * 8, 0xFFFFFF);
-			x++;
-		}
-		y++;
 	}
 }
