@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/22 16:43:25 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:03:25 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@
 # define MSG_ERR_PATH_DIR			"cub3d: textures cannot be folders\n"
 # define MSG_ERR_GETTING_COLOR		"cub3d: error while getting colors\n"
 # define MSG_ERR_RGB_EMPTY			"cub3d: the rgb code of %sis empty\n"
-# define MSG_ERR_RGB_STANDARD		"cub3d: the rgb code of %sis not up to standard\n"
-# define MSG_ERR_NO_COLOR			"cub3d: there is no %stexture in the file put as argument\n"
+# define MSG_ERR_RGB_STANDARD		"cub3d: the rgb code of %sisn't good\n"
+# define MSG_ERR_NO_COLOR			"cub3d: there is no %stextures\n"
 # define MSG_ERR_NO_MAP				"cub3d: there is no map\n"
 # define MSG_ERR_PART_MAP			"cub3d: the map isn't in one part\n"
 # define MSG_ERR_UNKNOWN_CHAR		"cub3d: the map has unknown character\n"
 # define MSG_ERR_OPEN_MAP			"cub3d: the map is not closed\n"
-# define MSG_ERR_NB_SPAWN			"cub3d: the map hasn't the right number of spawnpoint\n"
+# define MSG_ERR_NB_SPAWN			"cub3d: the map hasn't one spawnpoint\n"
 
 # define KEY_W				119
 # define KEY_A				97
@@ -195,6 +195,7 @@ void	update_mouse(t_game *game);
 
 /* ============================ Utils ============================ */
 bool	check_line_exist(char **map, int j);
+bool	check_wall(t_game *game, float x_dest, float y_dest);
 void	clear_image(t_data *data);
 int		count_lines(char *file);
 bool	err(char *str);

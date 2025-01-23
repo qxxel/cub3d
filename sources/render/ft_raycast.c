@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:02:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/16 11:36:51 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:48:32 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	update_img(t_game *param)
 	return (0);
 }
 
-void	init_game(t_game *game) // proteger toutes les fonctions mlx ??
+void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "game");
@@ -42,7 +42,6 @@ void	init_game(t_game *game) // proteger toutes les fonctions mlx ??
 		&game->img_data.size_line, &game->img_data.endian);
 	init_spawn(game);
 	init_texture(game, &game->texture);
-	/*init_minimap(game);*/
 }
 
 void	ft_raycast(t_game *game)

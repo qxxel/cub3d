@@ -6,24 +6,11 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 00:27:44 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/16 11:41:01 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:06:40 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static bool	check_wall(t_game *game, float x_dest, float y_dest)
-{
-	if (game->map[(int)(y_dest - 0.1)][(int)(x_dest - 0.1)] == '1')
-		return (true);
-	if (game->map[(int)(y_dest + 0.1)][(int)(x_dest - 0.1)] == '1')
-		return (true);
-	if (game->map[(int)(y_dest - 0.1)][(int)(x_dest + 0.1)] == '1')
-		return (true);
-	if (game->map[(int)(y_dest + 0.1)][(int)(x_dest + 0.1)] == '1')
-		return (true);
-	return (false);
-}
 
 static float	move_x(t_game *game, float angle_cos_sin)
 {
@@ -57,10 +44,8 @@ static float	move_y(t_game *game, float angle_cos_sin)
 	return (game->player.new_y);
 }
 
-void	move_player(t_game *game, float angle_cos, float angle_sin, int side)
+void	move_coords(t_game *game, float angle_cos, float angle_sin, int side)
 {
-	game->player.new_x = game->player.x;
-	game->player.new_y = game->player.y;
 	if (!side)
 	{
 		game->player.new_x = move_x(game, angle_cos);
@@ -75,6 +60,20 @@ void	move_player(t_game *game, float angle_cos, float angle_sin, int side)
 	}
 }
 
+static void	move_player(t_game *game, float angle_cos, float angle_sin)
+{
+	game->player.new_x = game->player.x;
+	game->player.new_y = game->player.y;
+	if (game->key.w)
+		move_coords(game, angle_cos, angle_sin, 0);
+	if (game->key.s)
+		move_coords(game, -angle_cos, -angle_sin, 0);
+	if (game->key.a)
+		move_coords(game, -angle_cos, angle_sin, 1);
+	if (game->key.d)
+		move_coords(game, angle_cos, -angle_sin, 1);
+}
+
 int	actions(t_game *param)
 {
 	float	angle_cos;
@@ -87,14 +86,7 @@ int	actions(t_game *param)
 	fix_angle(param);
 	angle_cos = cosf(param->player.angle);
 	angle_sin = sinf(param->player.angle);
-	if (param->key.w)
-		move_player(param, angle_cos, angle_sin, 0);
-	if (param->key.s)
-		move_player(param, -angle_cos, -angle_sin, 0);
-	if (param->key.a)
-		move_player(param, -angle_cos, angle_sin, 1);
-	if (param->key.d)
-		move_player(param, angle_cos, -angle_sin, 1);
+	move_player(param, angle_cos, angle_sin);
 	if (param->player.moved)
 	{
 		param->player.x = param->player.new_x;
