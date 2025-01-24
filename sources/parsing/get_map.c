@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:19:03 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/24 16:04:29 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:54 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,12 @@ static char	**copy_map(char **cub, int i)
 	j = 0;
 	while (cub[i])
 	{
-		if (cub[i][0])
-			map[j] = ft_strdup(cub[i]);
-		else
-			map[j] = ft_calloc(1, sizeof(char));
+		map[j] = ft_strdup(cub[i++]);
 		if (!map[j])
 		{
 			free_previous_lines(map, j);
 			return (NULL);
 		}
-		i++;
 		j++;
 	}
 	return (map);
