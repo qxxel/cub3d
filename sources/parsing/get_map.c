@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:19:03 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/21 16:58:44 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:37:56 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	**copy_map(char **cub, int i)
 	j = 0;
 	while (cub[j])
 		j++;
-	map = malloc((j - i + 1) * sizeof(char *));
+	map = ft_calloc((j - i + 1), sizeof(char *));
 	if (!map)
 	{
 		perror("cub3d");
@@ -47,8 +47,9 @@ static char	**copy_map(char **cub, int i)
 	j = 0;
 	while (cub[i])
 	{
-		map[j] = ft_strdup(cub[i]);
-		if (!check_line_exist(map, j))
+		if (cub[i][0] != '\0')
+			map[j] = ft_strdup(cub[i]);
+		if (map[j] && !check_line_exist(map, j))
 			return (NULL);
 		i++;
 		j++;

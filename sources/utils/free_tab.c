@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:41:37 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/09 14:42:51 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:22:42 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	free_tab(char **tab)
 {
 	int	i;
 
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab[i]);
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
 	free(tab);
 }

@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:52:53 by agerbaud          #+#    #+#             */
-/*   Updated: 2024/02/05 11:08:44 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:22:23 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ char	*ft_strdup(const char *s)
 		cpy[i] = s[i];
 		i++;
 	}
+	cpy[i] = '\0';
 	return (cpy);
 }
