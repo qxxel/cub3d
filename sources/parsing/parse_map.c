@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:43 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/24 14:34:44 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:09:19 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static bool	check_rest_empty(char **map, int i)
 				j++;
 		}
 		if (map[i][j] != '\0')
-			return (true);
+			return (false);
 		i++;
 	}
-	return (false);
+	return (true);
 }
 
 static bool	check_empty_lines(char **map)
@@ -40,13 +40,10 @@ static bool	check_empty_lines(char **map)
 	{
 		if (map[i][0] == '\0')
 		{
-			if (check_rest_empty(map, i))
+			if (!check_rest_empty(map, i))
 				return (true);
 			else
-			{
-				map[i] = NULL;
 				return (false);
-			}
 		}
 		i++;
 	}
