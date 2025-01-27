@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/24 15:54:48 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:06:41 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define MSG_ERR_NO_COLOR			"cub3d: there is no %stextures\n"
 # define MSG_ERR_NO_MAP				"cub3d: there is no map\n"
 # define MSG_ERR_PART_MAP			"cub3d: the map isn't in one part\n"
+# define MSG_ERR_MAP_TOO_BIG		"cub3d: the map is too big\n"
 # define MSG_ERR_UNKNOWN_CHAR		"cub3d: the map has unknown character\n"
 # define MSG_ERR_OPEN_MAP			"cub3d: the map is not closed\n"
 # define MSG_ERR_NB_SPAWN			"cub3d: the map hasn't one spawnpoint\n"

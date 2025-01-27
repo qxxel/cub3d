@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:43 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/24 16:09:19 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:06:46 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,15 @@ bool	parse_map(char **map, t_game *game)
 		return (err(MSG_ERR_NO_MAP));
 	if (check_empty_lines(map))
 		return (err(MSG_ERR_PART_MAP));
+	if (bigger_line(map) > 500 || ft_tablen(map) > 500)
+		return (err(MSG_ERR_MAP_TOO_BIG));
 	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			if (check_char(game, &count_spawn, i, j))
+			if (check_char(game, &count_spawn, i, j++))
 				return (true);
-			j++;
 		}
 		i++;
 	}
