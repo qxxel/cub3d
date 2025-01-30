@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/30 19:14:20 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 19:26:48 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static bool	check_rgb(char **rgb, char *part, int i, int j)
 					return (false);
 			}
 			ft_dprintf(2, MSG_ERR_RGB_STANDARD, part);
+			free_tab(rgb);
 			return (true);
 		}
 		j++;
@@ -49,6 +50,7 @@ static bool	parse_rgb(char **rgb, char *part)
 		if (rgb[i][j] && rgb[i][j] == '\0')
 		{
 			ft_dprintf(2, MSG_ERR_RGB_EMPTY, part);
+			free_tab(rgb);
 			return (true);
 		}
 		if (check_rgb(rgb, part, i, j))
@@ -58,6 +60,7 @@ static bool	parse_rgb(char **rgb, char *part)
 	if (i != 3)
 	{
 		ft_dprintf(2, MSG_ERR_RGB_EMPTY, part);
+		free_tab(rgb);
 		return (true);
 	}
 	return (false);
@@ -80,6 +83,7 @@ static bool	check_color(t_color *color, char *part)
 		ft_dprintf(2, MSG_ERR_RGB_STANDARD, part);
 		return (true);
 	}
+	color->color_code = find_color_code(color->r, color->g, color->b);
 	return (false);
 }
 
@@ -132,6 +136,5 @@ bool	get_color(char **cub, char *part, t_color *color)
 	free_tab(rgb);
 	if (check_color(color, part))
 		return (true);
-	color->color_code = find_color_code(color->r, color->g, color->b);
 	return (false);
 }
