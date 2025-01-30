@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 21:33:13 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/23 23:41:56 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:36:26 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	fill_map(t_game *game)
 void	init_map(t_game *game)
 {
 	game->map_img = mlx_new_image(game->mlx, \
-		bigger_line(game->map) * 8 + 144, \
+		bigger_line(game->map, 0) * 8 + 144, \
 		ft_tablen(game->map) * 8 + 144);
 	game->map_data.data = mlx_get_data_addr(game->map_img, \
 		&game->map_data.bpp, &game->map_data.size_line, \

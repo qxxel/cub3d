@@ -6,19 +6,17 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 20:46:42 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/23 20:50:39 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:35:55 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	bigger_line(char **tab)
+int	bigger_line(char **tab, int i)
 {
-	int	i;
 	int	tmp;
 	int	bigger;
 
-	i = 0;
 	bigger = 0;
 	while (tab && tab[i])
 	{

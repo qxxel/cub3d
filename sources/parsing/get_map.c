@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:19:03 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/24 16:18:54 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:53:44 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,32 @@ static void	check_rest_empty(char **map, int *i)
 	}
 }
 
+char	*get_actual_line(char **cub, int start, int i)
+{
+	int		j;
+	int		nb_spaces;
+	char	*spaces;
+	char	*line;
+
+	nb_spaces = bigger_line(cub, start) - ft_strlen(cub[i]);
+	spaces = (char *)malloc(sizeof(char) * (nb_spaces + 1));
+	if (!spaces)
+		return (NULL);
+	j = 0;
+	while (j < nb_spaces)
+		spaces[j++] = ' ';
+	spaces[j] = '\0';
+	line = ft_strjoin(cub[i++], spaces);
+	free(spaces);
+	if (!line)
+		return (NULL);
+	return (line);
+}
+
 static char	**copy_map(char **cub, int i)
 {
 	int		j;
+	int		start;
 	char	**map;
 
 	j = 0;
@@ -45,15 +68,14 @@ static char	**copy_map(char **cub, int i)
 		return (NULL);
 	}
 	j = 0;
+	start = i;
 	while (cub[i])
 	{
-		map[j] = ft_strdup(cub[i++]);
+		map[j] = get_actual_line(cub, start, i);
 		if (!map[j])
-		{
-			free_previous_lines(map, j);
-			return (NULL);
-		}
+			return (free_previous_lines(map, j));
 		j++;
+		i++;
 	}
 	return (map);
 }

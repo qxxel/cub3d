@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:43 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/30 00:04:42 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:36:20 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ bool	parse_map(char **map, t_game *game)
 		return (err(MSG_ERR_NO_MAP));
 	if (check_empty_lines(map))
 		return (err(MSG_ERR_PART_MAP));
-	if (bigger_line(map) > 500 || ft_tablen(map) > 500)
+	if (bigger_line(map, 0) > 500 || ft_tablen(map) > 500)
 		return (err(MSG_ERR_MAP_TOO_BIG));
 	while (map[i])
 	{

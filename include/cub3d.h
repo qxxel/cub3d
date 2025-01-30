@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/27 17:06:41 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:48:04 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,8 +210,8 @@ void	update_mouse(t_game *game);
 /* ==================================================================== */
 
 /* ============================ Utils ============================ */
-int		bigger_line(char **tab);
-void	free_previous_lines(char **map, int j);
+int		bigger_line(char **tab, int i);
+void	*free_previous_lines(char **map, int j);
 bool	check_wall(t_game *game, float x_dest, float y_dest);
 void	clear_image(t_data *data);
 int		count_lines(char *file);
