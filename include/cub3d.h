@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/30 17:31:03 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 19:10:22 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,13 +212,14 @@ void	update_mouse(t_game *game);
 /* ============================ Utils ============================ */
 int		ft_atod(const char *nptr);
 int		bigger_line(char **tab, int i);
-void	*free_previous_lines(char **map, int j);
+void	check_empty(char **map, int *i);
 bool	check_wall(t_game *game, float x_dest, float y_dest);
 void	clear_image(t_data *data);
 int		count_lines(char *file);
 bool	err(char *str);
 int		find_color_code(int r, int g, int b);
 void	fix_angle(t_game *game);
+void	*free_previous_lines(char **map, int j);
 void	free_tab(char **map);
 void	*ft_bzero_int(int *s, size_t n);
 void	init_spawn(t_game *game);
