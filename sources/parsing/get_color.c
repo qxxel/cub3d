@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/30 17:29:08 by mreynaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 19:14:20 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,8 @@ bool	get_color(char **cub, char *part, t_color *color)
 	{
 		if (ft_tablen(rgb) >= 2)
 			free(rgb[1]);
-		free(rgb[0]);
+		if (ft_tablen(rgb) >= 1)
+			free(rgb[0]);
 		free(rgb);
 		ft_dprintf(2, MSG_ERR_RGB_EMPTY, part);
 		return (true);
