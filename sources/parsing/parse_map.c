@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:43 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/27 17:06:46 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 00:04:42 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static bool	check_sides(char **map, int i, int j)
 	if (i == 0 || j == 0 || \
 		(size_t)j == ft_strlen(map[i]) - 1 || (size_t)i == ft_tablen(map) - 1)
 		return (true);
-	if (j > 0 && map[i][j - 1] == ' ')
+	if (j > 0 && (map[i][j - 1] == ' ' || map[i][j - 1] == '\0'))
 		return (true);
-	if (i > 0 && map[i - 1][j] == ' ')
+	if (i > 0 && (map[i - 1][j] == ' ' || map[i - 1][j] == '\0'))
 		return (true);
 	if (map[i][j + 1] && (map[i][j + 1] == ' ' || map[i][j + 1] == '\0'))
 		return (true);
