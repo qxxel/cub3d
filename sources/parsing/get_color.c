@@ -6,7 +6,7 @@
 /*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:35 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/23 22:44:35 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:24:20 by agerbaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,21 @@ bool	get_color(char **cub, char *part, t_color *color)
 	rgb = ft_split(find_color(cub, part), ',');
 	if (!rgb)
 		return (err(MSG_ERR_GETTING_COLOR));
+	if (ft_tablen(rgb) < 3)
+	{
+		if (ft_tablen(rgb) >= 2)
+			free(rgb[1]);
+		free(rgb[0]);
+		free(rgb);
+		ft_dprintf(2, MSG_ERR_RGB_EMPTY, part);
+		return (true);
+	}
 	if (parse_rgb(rgb, part))
 		return (true);
 	color->r = ft_atoi(rgb[0]);
 	color->g = ft_atoi(rgb[1]);
 	color->b = ft_atoi(rgb[2]);
-	ft_free_table(rgb);
+	free_tab(rgb);
 	if (check_color(color, part))
 		return (true);
 	color->color_code = find_color_code(color->r, color->g, color->b);
