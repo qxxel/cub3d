@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:08:08 by agerbaud          #+#    #+#             */
-/*   Updated: 2025/01/30 15:48:04 by agerbaud         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:31:03 by mreynaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,7 @@ void	update_mouse(t_game *game);
 /* ==================================================================== */
 
 /* ============================ Utils ============================ */
+int		ft_atod(const char *nptr);
 int		bigger_line(char **tab, int i);
 void	*free_previous_lines(char **map, int j);
 bool	check_wall(t_game *game, float x_dest, float y_dest);

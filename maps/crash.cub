@@ -3,7 +3,7 @@ SO ./assets/42.xpm
 WE ./assets/42.xpm
 EA ./assets/42.xpm
 
-F 220,100,0
+F 220,100,4294967296
 C 0,0,0
 
 1
