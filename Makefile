@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agerbaud <agerbaud@student.42.fr>          +#+  +:+       +#+         #
+#    By: mreynaud <mreynaud@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:19:13 by mreynaud          #+#    #+#              #
-#    Updated: 2025/01/30 17:02:58 by agerbaud         ###   ########.fr        #
+#    Updated: 2025/01/30 20:53:39 by mreynaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,6 @@ DBGFLAGS		= -g3 -Og
 IFLAGS			= -I $(DIR_INC) -I $(DIR_INC_LIBFT) -I $(DIR_INC_MLX)
 DEPFLAGS		= -MMD -MP #-Ofast
 CFLAGS			= $(WFLAGS) $(DEPFLAGS) $(IFLAGS)
-BONUSFLAGS		= -D BONUS=1
 LFLAGS			= -lXext -lX11 -lm -lXfixes
 
 CC				= cc
@@ -67,9 +66,8 @@ all		: $(NAME)
 # -------------------------------     debug     ------------------------------- #
 .PHONY	: debug
 debug	: $(OBJ) $(LIB)
-	@$(MSG_OBJECTS)
-	$(CC) $(LFLAGS) -o $(NAME) $(OBJ) $(LIB) $(DBGFLAGS)
-	@$(MSG_RULE)
+	$(eval WFLAGS += $(DBGFLAGS))
+	@make -C . all
 
 # -------------------------------    cub3d    ------------------------------- #
 $(NAME)	: $(OBJ) $(LIB)
@@ -79,10 +77,7 @@ $(NAME)	: $(OBJ) $(LIB)
 
 # -------------------------------    bonus    ------------------------------- #
 .PHONY	: bonus
-bonus	: $(OBJ) $(LIB)
-	@$(MSG_OBJECTS)
-	$(CC) $(LFLAGS) $(BONUSFLAGS) -o $(NAME) $(OBJ) $(LIB)
-	@$(MSG_RULE)
+bonus	: all
 
 # -------------------------------    object    ------------------------------- #
 $(DIR_BUILD)%.o : $(DIR_SRC)%.c Makefile
