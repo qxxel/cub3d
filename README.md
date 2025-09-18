@@ -27,11 +27,11 @@ It's a 3D game (2.5D), made with raytracing, inspired by the famous game named [
 ## ✨ Features
 
 ✅ Raytracing  
-✅ Take parameters in a file `.cub` given as argument like color of the sky and floor or walls textures
+✅ Take parameters in a file `.cub` given as argument like color of the sky and floor or walls textures  
 ✅ Take and display a map given in the `.cub`  
 ✅ Player movements (WASD and directional arrows)  
 ✅ Collisions management  
-✅ Minimap (on top left)
+✅ Minimap (on top left)  
 ✅ Different sprites according to the direction of the wall
 
 ---
