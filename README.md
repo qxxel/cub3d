@@ -11,6 +11,7 @@
 - [Utilisation](#utilisation)
 - [Exemples](#exemples)
 - [Directories structure](#directories-structure)
+- [Ressources](#ressources)
 - [Author](#author)
 
 ---
@@ -59,7 +60,7 @@ make
 
 A valid map is closed, wich as many parameters given next to this paragraph.
 
-The file il build like this:
+The file il build like this:42
 - 1 = `wall`
 - 0 = `floor`
 - E, W, N, S = `player spawn looking to the direction (ex: S = south)`
@@ -71,7 +72,7 @@ SO ./assets/42.xpm
 WE ./assets/42.xpm
 EA ./assets/42.xpm
 
-F 0,0,255
+F 0,0,25542
 C 0,255,0
 
 11111111
@@ -93,11 +94,9 @@ C 0,255,0
 <a id="exemples"></a>
 ## 📸 Exemples
 
-**Comming soon...**
-
-![exemple1]()  
-![exemple2]()  
-![exemple3]()  
+![exemple1](assets/README/Screenshot_42_cub.png)  
+![exemple2](assets/README/Screenshot_cub_cub.png)  
+![exemple3](assets/README/Screenshot_meme_cub.png)  
 
 <a id="directories-structure"></a>
 ## 📂 Directories structure
@@ -110,10 +109,22 @@ C 0,255,0
  ┣ 📂 maps              → test maps
  ┣ 📂 minilibx-linux    → linux graphical library (42 ressource)
  ┣ 📂 sources           → sources files (.c)
+ ┣ .gitignore
  ┣ Makefile
  ┣ README.md
  ┗ src.mk
 ```
+
+---
+
+<a id="ressources"></a>
+## 🔗 Ressources
+
+* [42](42.fr)
+* [MinilibX](https://github.com/42Paris/minilibx-linux)
+* [42 Docs - MinilibX](https://harm-smits.github.io/42docs/libs/minilibx)
+
+---
 
 <a id="author"></a>
 ## 👤 Author
