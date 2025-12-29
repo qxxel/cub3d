@@ -130,4 +130,6 @@ C 0,255,0
 ## 👤 Author
 
 * Axel – [GitHub](https://gitub.com/qxxel)
-* 42 student - login: *agerbaud*
+* mreynaud42 – [GitHub](https://gitub.com/mreynaud42)
+
+* 42 student - login: *agerbaud* and *mreynaud*
