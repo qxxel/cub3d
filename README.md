@@ -1,3 +1,5 @@
+*This project has been created as part of the 42 curriculum by **agerbaud**, **mreynaud**.*
+
 # cub3d
 ![42 Project](https://img.shields.io/badge/42-Project-blue)
 ![Language](https://img.shields.io/badge/C-0E7FC0?logo=c)
@@ -133,3 +135,4 @@ C 0,255,0
 * mreynaud42 – [GitHub](https://gitub.com/mreynaud42)
 
 * 42 student - login: *agerbaud* and *mreynaud*
+
